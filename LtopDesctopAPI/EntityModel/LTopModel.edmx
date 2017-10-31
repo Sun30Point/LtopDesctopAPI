@@ -1,0 +1,2253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LTopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adverts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdvertsToAdvertType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdvertId" Type="bigint" />
+          <Property Name="AdvertTypeId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdvertsToDevices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdvertId" Type="bigint" />
+          <Property Name="DevicesId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdvertType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEng" Type="nvarchar(max)" />
+          <Property Name="NameRus" Type="nvarchar(max)" />
+          <Property Name="NameUkr" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdvertVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdvertId" Type="bigint" />
+          <Property Name="VersionNumber" Type="bigint" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="DeviceCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorsId" Type="bigint" />
+          <Property Name="ModelsId" Type="bigint" />
+          <Property Name="DeviceCategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Models">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEng" Type="nvarchar(max)" />
+          <Property Name="NameRus" Type="nvarchar(max)" />
+          <Property Name="NameUkr" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ModelsToDeviceCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModelsId" Type="bigint" />
+          <Property Name="DevicesCategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Skype" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Salt" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsBlocked" Type="bit" />
+        </EntityType>
+        <EntityType Name="PersonsToAdvert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonGuid" Type="uniqueidentifier" />
+          <Property Name="AdvertId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PersonsToPersonType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonGuid" Type="uniqueidentifier" />
+          <Property Name="PersonTypeId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PersonsToPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonGuid" Type="uniqueidentifier" />
+          <Property Name="PhotoId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PersonType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEng" Type="nvarchar(max)" />
+          <Property Name="NameRus" Type="nvarchar(max)" />
+          <Property Name="NameUkr" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PropertyToModels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="bigint" />
+          <Property Name="ModelsId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PropertyToPropertyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="bigint" />
+          <Property Name="PropertyTypeId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PropertyToSeries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="bigint" />
+          <Property Name="SeriesId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEng" Type="nvarchar(max)" />
+          <Property Name="NameRus" Type="nvarchar(max)" />
+          <Property Name="NameUkr" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEng" Type="nvarchar(max)" />
+          <Property Name="NameRus" Type="nvarchar(max)" />
+          <Property Name="NameUkr" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SeriesToDevices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DevicesId" Type="bigint" />
+          <Property Name="SeriesId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SeriesToModels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModelsId" Type="bigint" />
+          <Property Name="SeriesId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vendors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEng" Type="nvarchar(max)" />
+          <Property Name="NameRus" Type="nvarchar(max)" />
+          <Property Name="NameUkr" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="VendorsToDeviceCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorsId" Type="bigint" />
+          <Property Name="DevicesCategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="VendorsToModels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorsId" Type="bigint" />
+          <Property Name="ModelsId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="fk_AdvertsToAdvertType_AdvertId">
+          <End Role="Adverts" Type="Self.Adverts" Multiplicity="0..1" />
+          <End Role="AdvertsToAdvertType" Type="Self.AdvertsToAdvertType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToAdvertType">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertsToAdvertType_AdvertTypeId">
+          <End Role="AdvertType" Type="Self.AdvertType" Multiplicity="0..1" />
+          <End Role="AdvertsToAdvertType" Type="Self.AdvertsToAdvertType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToAdvertType">
+              <PropertyRef Name="AdvertTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertsToDevices_AdvertId">
+          <End Role="Adverts" Type="Self.Adverts" Multiplicity="0..1" />
+          <End Role="AdvertsToDevices" Type="Self.AdvertsToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToDevices">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertsToDevices_DevicesId">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="AdvertsToDevices" Type="Self.AdvertsToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToDevices">
+              <PropertyRef Name="DevicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertVersion_AdvertId">
+          <End Role="Adverts" Type="Self.Adverts" Multiplicity="0..1" />
+          <End Role="AdvertVersion" Type="Self.AdvertVersion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertVersion">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Devices_DeviceCategoryId">
+          <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="DeviceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Devices_ModelsId">
+          <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Devices_VendorsId">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="VendorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ModelsToDeviceCategory_DevicesCategoryId">
+          <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
+          <End Role="ModelsToDeviceCategory" Type="Self.ModelsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModelsToDeviceCategory">
+              <PropertyRef Name="DevicesCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ModelsToDeviceCategory_ModelsId">
+          <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+          <End Role="ModelsToDeviceCategory" Type="Self.ModelsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModelsToDeviceCategory">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToAdvert_AdvertId">
+          <End Role="Adverts" Type="Self.Adverts" Multiplicity="0..1" />
+          <End Role="PersonsToAdvert" Type="Self.PersonsToAdvert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonsToAdvert">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToAdvert_PersonGuid">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="PersonsToAdvert" Type="Self.PersonsToAdvert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="PersonsToAdvert">
+              <PropertyRef Name="PersonGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPersonType_PersonGuid">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="PersonsToPersonType" Type="Self.PersonsToPersonType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="PersonsToPersonType">
+              <PropertyRef Name="PersonGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPersonType_PersonTypeId">
+          <End Role="PersonType" Type="Self.PersonType" Multiplicity="0..1" />
+          <End Role="PersonsToPersonType" Type="Self.PersonsToPersonType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonsToPersonType">
+              <PropertyRef Name="PersonTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPhoto_PersonGuid">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="PersonsToPhoto" Type="Self.PersonsToPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="PersonsToPhoto">
+              <PropertyRef Name="PersonGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPhoto_PhotoId">
+          <End Role="Photos" Type="Self.Photos" Multiplicity="0..1" />
+          <End Role="PersonsToPhoto" Type="Self.PersonsToPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonsToPhoto">
+              <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToModels_ModelsId">
+          <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+          <End Role="PropertyToModels" Type="Self.PropertyToModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToModels">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToModels_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToModels" Type="Self.PropertyToModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToModels">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToPropertyType_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToPropertyType" Type="Self.PropertyToPropertyType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToPropertyType">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToPropertyType_PropertyTypeId">
+          <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="0..1" />
+          <End Role="PropertyToPropertyType" Type="Self.PropertyToPropertyType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToPropertyType">
+              <PropertyRef Name="PropertyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToSeries_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToSeries" Type="Self.PropertyToSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToSeries">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToSeries_SeriesId">
+          <End Role="Series" Type="Self.Series" Multiplicity="0..1" />
+          <End Role="PropertyToSeries" Type="Self.PropertyToSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToSeries">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToDevices_DevicesId">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="SeriesToDevices" Type="Self.SeriesToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToDevices">
+              <PropertyRef Name="DevicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToDevices_SeriesId">
+          <End Role="Series" Type="Self.Series" Multiplicity="0..1" />
+          <End Role="SeriesToDevices" Type="Self.SeriesToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToDevices">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToModels_ModelsId">
+          <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+          <End Role="SeriesToModels" Type="Self.SeriesToModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToModels">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToModels_SeriesId">
+          <End Role="Series" Type="Self.Series" Multiplicity="0..1" />
+          <End Role="SeriesToModels" Type="Self.SeriesToModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToModels">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToDeviceCategory_DevicesCategoryId">
+          <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
+          <End Role="VendorsToDeviceCategory" Type="Self.VendorsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToDeviceCategory">
+              <PropertyRef Name="DevicesCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToDeviceCategoryy_VendorsId">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
+          <End Role="VendorsToDeviceCategory" Type="Self.VendorsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToDeviceCategory">
+              <PropertyRef Name="VendorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToModels_ModelsId">
+          <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+          <End Role="VendorsToModels" Type="Self.VendorsToModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToModels">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToModels_VendorsId">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
+          <End Role="VendorsToModels" Type="Self.VendorsToModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToModels">
+              <PropertyRef Name="VendorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreateAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreateModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Skype" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Salt" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="IsBlocke" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreatePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Photo" Type="image" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreateProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Value" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreatePropertyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreateSeries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreateVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="DeleteAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeleteModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModelId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeletePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DeletePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhotoId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeletePropertyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeleteSeries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SeriesId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeleteVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VendorsId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdateAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="NewNameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewDescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdateModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModelId" Type="bigint" Mode="In" />
+          <Parameter Name="NewNameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewDescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="NewName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewEmail" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewPhone" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewSkype" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewPassword" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewSalt" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+          <Parameter Name="NewIsBlocke" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdatePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhotoId" Type="bigint" Mode="In" />
+          <Parameter Name="NewPhoto" Type="image" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdatePropertyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="NewNameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewDescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdateSeries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SeriesId" Type="bigint" Mode="In" />
+          <Parameter Name="NewNameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewDescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdateVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VendorsId" Type="bigint" Mode="In" />
+          <Parameter Name="NewNameEng" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameRus" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewNameUkr" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewDescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="NewDescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="LTopDBModelStoreContainer">
+          <EntitySet Name="Adverts" EntityType="Self.Adverts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertsToAdvertType" EntityType="Self.AdvertsToAdvertType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertsToDevices" EntityType="Self.AdvertsToDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertType" EntityType="Self.AdvertType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertVersion" EntityType="Self.AdvertVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceCategory" EntityType="Self.DeviceCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelsToDeviceCategory" EntityType="Self.ModelsToDeviceCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonsToAdvert" EntityType="Self.PersonsToAdvert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonsToPersonType" EntityType="Self.PersonsToPersonType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonsToPhoto" EntityType="Self.PersonsToPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonType" EntityType="Self.PersonType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyToModels" EntityType="Self.PropertyToModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyToPropertyType" EntityType="Self.PropertyToPropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyToSeries" EntityType="Self.PropertyToSeries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyType" EntityType="Self.PropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeriesToDevices" EntityType="Self.SeriesToDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeriesToModels" EntityType="Self.SeriesToModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendorsToDeviceCategory" EntityType="Self.VendorsToDeviceCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendorsToModels" EntityType="Self.VendorsToModels" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_AdvertsToAdvertType_AdvertId" Association="Self.fk_AdvertsToAdvertType_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="AdvertsToAdvertType" EntitySet="AdvertsToAdvertType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertsToAdvertType_AdvertTypeId" Association="Self.fk_AdvertsToAdvertType_AdvertTypeId">
+            <End Role="AdvertType" EntitySet="AdvertType" />
+            <End Role="AdvertsToAdvertType" EntitySet="AdvertsToAdvertType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertsToDevices_AdvertId" Association="Self.fk_AdvertsToDevices_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="AdvertsToDevices" EntitySet="AdvertsToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertsToDevices_DevicesId" Association="Self.fk_AdvertsToDevices_DevicesId">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="AdvertsToDevices" EntitySet="AdvertsToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertVersion_AdvertId" Association="Self.fk_AdvertVersion_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="AdvertVersion" EntitySet="AdvertVersion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Devices_DeviceCategoryId" Association="Self.fk_Devices_DeviceCategoryId">
+            <End Role="DeviceCategory" EntitySet="DeviceCategory" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Devices_ModelsId" Association="Self.fk_Devices_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Devices_VendorsId" Association="Self.fk_Devices_VendorsId">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ModelsToDeviceCategory_DevicesCategoryId" Association="Self.fk_ModelsToDeviceCategory_DevicesCategoryId">
+            <End Role="DeviceCategory" EntitySet="DeviceCategory" />
+            <End Role="ModelsToDeviceCategory" EntitySet="ModelsToDeviceCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ModelsToDeviceCategory_ModelsId" Association="Self.fk_ModelsToDeviceCategory_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="ModelsToDeviceCategory" EntitySet="ModelsToDeviceCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToAdvert_AdvertId" Association="Self.fk_PersonsToAdvert_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="PersonsToAdvert" EntitySet="PersonsToAdvert" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToAdvert_PersonGuid" Association="Self.fk_PersonsToAdvert_PersonGuid">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="PersonsToAdvert" EntitySet="PersonsToAdvert" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPersonType_PersonGuid" Association="Self.fk_PersonsToPersonType_PersonGuid">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="PersonsToPersonType" EntitySet="PersonsToPersonType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPersonType_PersonTypeId" Association="Self.fk_PersonsToPersonType_PersonTypeId">
+            <End Role="PersonType" EntitySet="PersonType" />
+            <End Role="PersonsToPersonType" EntitySet="PersonsToPersonType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPhoto_PersonGuid" Association="Self.fk_PersonsToPhoto_PersonGuid">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="PersonsToPhoto" EntitySet="PersonsToPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPhoto_PhotoId" Association="Self.fk_PersonsToPhoto_PhotoId">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="PersonsToPhoto" EntitySet="PersonsToPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToModels_ModelsId" Association="Self.fk_PropertyToModels_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="PropertyToModels" EntitySet="PropertyToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToModels_PropertyId" Association="Self.fk_PropertyToModels_PropertyId">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyToModels" EntitySet="PropertyToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToPropertyType_PropertyId" Association="Self.fk_PropertyToPropertyType_PropertyId">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyToPropertyType" EntitySet="PropertyToPropertyType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToPropertyType_PropertyTypeId" Association="Self.fk_PropertyToPropertyType_PropertyTypeId">
+            <End Role="PropertyType" EntitySet="PropertyType" />
+            <End Role="PropertyToPropertyType" EntitySet="PropertyToPropertyType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToSeries_PropertyId" Association="Self.fk_PropertyToSeries_PropertyId">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyToSeries" EntitySet="PropertyToSeries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToSeries_SeriesId" Association="Self.fk_PropertyToSeries_SeriesId">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="PropertyToSeries" EntitySet="PropertyToSeries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToDevices_DevicesId" Association="Self.fk_SeriesToDevices_DevicesId">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="SeriesToDevices" EntitySet="SeriesToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToDevices_SeriesId" Association="Self.fk_SeriesToDevices_SeriesId">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="SeriesToDevices" EntitySet="SeriesToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToModels_ModelsId" Association="Self.fk_SeriesToModels_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="SeriesToModels" EntitySet="SeriesToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToModels_SeriesId" Association="Self.fk_SeriesToModels_SeriesId">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="SeriesToModels" EntitySet="SeriesToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToDeviceCategory_DevicesCategoryId" Association="Self.fk_VendorsToDeviceCategory_DevicesCategoryId">
+            <End Role="DeviceCategory" EntitySet="DeviceCategory" />
+            <End Role="VendorsToDeviceCategory" EntitySet="VendorsToDeviceCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToDeviceCategoryy_VendorsId" Association="Self.fk_VendorsToDeviceCategoryy_VendorsId">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="VendorsToDeviceCategory" EntitySet="VendorsToDeviceCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToModels_ModelsId" Association="Self.fk_VendorsToModels_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="VendorsToModels" EntitySet="VendorsToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToModels_VendorsId" Association="Self.fk_VendorsToModels_VendorsId">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="VendorsToModels" EntitySet="VendorsToModels" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LTopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Advert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="AdvertsToAdvertTypes" Relationship="Self.fk_AdvertsToAdvertType_AdvertId" FromRole="Adverts" ToRole="AdvertsToAdvertType" />
+          <NavigationProperty Name="AdvertsToDevices" Relationship="Self.fk_AdvertsToDevices_AdvertId" FromRole="Adverts" ToRole="AdvertsToDevices" />
+          <NavigationProperty Name="AdvertVersions" Relationship="Self.fk_AdvertVersion_AdvertId" FromRole="Adverts" ToRole="AdvertVersion" />
+          <NavigationProperty Name="PersonsToAdverts" Relationship="Self.fk_PersonsToAdvert_AdvertId" FromRole="Adverts" ToRole="PersonsToAdvert" />
+        </EntityType>
+        <EntityType Name="AdvertsToAdvertType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdvertId" Type="Int64" />
+          <Property Name="AdvertTypeId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Advert" Relationship="Self.fk_AdvertsToAdvertType_AdvertId" FromRole="AdvertsToAdvertType" ToRole="Adverts" />
+          <NavigationProperty Name="AdvertType" Relationship="Self.fk_AdvertsToAdvertType_AdvertTypeId" FromRole="AdvertsToAdvertType" ToRole="AdvertType" />
+        </EntityType>
+        <EntityType Name="AdvertsToDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdvertId" Type="Int64" />
+          <Property Name="DevicesId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Advert" Relationship="Self.fk_AdvertsToDevices_AdvertId" FromRole="AdvertsToDevices" ToRole="Adverts" />
+          <NavigationProperty Name="Device" Relationship="Self.fk_AdvertsToDevices_DevicesId" FromRole="AdvertsToDevices" ToRole="Devices" />
+        </EntityType>
+        <EntityType Name="AdvertType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="AdvertsToAdvertTypes" Relationship="Self.fk_AdvertsToAdvertType_AdvertTypeId" FromRole="AdvertType" ToRole="AdvertsToAdvertType" />
+        </EntityType>
+        <EntityType Name="AdvertVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdvertId" Type="Int64" />
+          <Property Name="VersionNumber" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Advert" Relationship="Self.fk_AdvertVersion_AdvertId" FromRole="AdvertVersion" ToRole="Adverts" />
+        </EntityType>
+        <EntityType Name="DeviceCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Devices" Relationship="Self.fk_Devices_DeviceCategoryId" FromRole="DeviceCategory" ToRole="Devices" />
+          <NavigationProperty Name="ModelsToDeviceCategories" Relationship="Self.fk_ModelsToDeviceCategory_DevicesCategoryId" FromRole="DeviceCategory" ToRole="ModelsToDeviceCategory" />
+          <NavigationProperty Name="VendorsToDeviceCategories" Relationship="Self.fk_VendorsToDeviceCategory_DevicesCategoryId" FromRole="DeviceCategory" ToRole="VendorsToDeviceCategory" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorsId" Type="Int64" />
+          <Property Name="ModelsId" Type="Int64" />
+          <Property Name="DeviceCategoryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="AdvertsToDevices" Relationship="Self.fk_AdvertsToDevices_DevicesId" FromRole="Devices" ToRole="AdvertsToDevices" />
+          <NavigationProperty Name="DeviceCategory" Relationship="Self.fk_Devices_DeviceCategoryId" FromRole="Devices" ToRole="DeviceCategory" />
+          <NavigationProperty Name="Model" Relationship="Self.fk_Devices_ModelsId" FromRole="Devices" ToRole="Models" />
+          <NavigationProperty Name="Vendor" Relationship="Self.fk_Devices_VendorsId" FromRole="Devices" ToRole="Vendors" />
+          <NavigationProperty Name="SeriesToDevices" Relationship="Self.fk_SeriesToDevices_DevicesId" FromRole="Devices" ToRole="SeriesToDevices" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Devices" Relationship="Self.fk_Devices_ModelsId" FromRole="Models" ToRole="Devices" />
+          <NavigationProperty Name="ModelsToDeviceCategories" Relationship="Self.fk_ModelsToDeviceCategory_ModelsId" FromRole="Models" ToRole="ModelsToDeviceCategory" />
+          <NavigationProperty Name="PropertyToModels" Relationship="Self.fk_PropertyToModels_ModelsId" FromRole="Models" ToRole="PropertyToModels" />
+          <NavigationProperty Name="SeriesToModels" Relationship="Self.fk_SeriesToModels_ModelsId" FromRole="Models" ToRole="SeriesToModels" />
+          <NavigationProperty Name="VendorsToModels" Relationship="Self.fk_VendorsToModels_ModelsId" FromRole="Models" ToRole="VendorsToModels" />
+        </EntityType>
+        <EntityType Name="ModelsToDeviceCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelsId" Type="Int64" />
+          <Property Name="DevicesCategoryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="DeviceCategory" Relationship="Self.fk_ModelsToDeviceCategory_DevicesCategoryId" FromRole="ModelsToDeviceCategory" ToRole="DeviceCategory" />
+          <NavigationProperty Name="Model" Relationship="Self.fk_ModelsToDeviceCategory_ModelsId" FromRole="ModelsToDeviceCategory" ToRole="Models" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsBlocked" Type="Boolean" />
+          <NavigationProperty Name="PersonsToAdverts" Relationship="Self.fk_PersonsToAdvert_PersonGuid" FromRole="Persons" ToRole="PersonsToAdvert" />
+          <NavigationProperty Name="PersonsToPersonTypes" Relationship="Self.fk_PersonsToPersonType_PersonGuid" FromRole="Persons" ToRole="PersonsToPersonType" />
+          <NavigationProperty Name="PersonsToPhotoes" Relationship="Self.fk_PersonsToPhoto_PersonGuid" FromRole="Persons" ToRole="PersonsToPhoto" />
+        </EntityType>
+        <EntityType Name="PersonsToAdvert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonGuid" Type="Guid" />
+          <Property Name="AdvertId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Advert" Relationship="Self.fk_PersonsToAdvert_AdvertId" FromRole="PersonsToAdvert" ToRole="Adverts" />
+          <NavigationProperty Name="Person" Relationship="Self.fk_PersonsToAdvert_PersonGuid" FromRole="PersonsToAdvert" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="PersonsToPersonType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonGuid" Type="Guid" />
+          <Property Name="PersonTypeId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Person" Relationship="Self.fk_PersonsToPersonType_PersonGuid" FromRole="PersonsToPersonType" ToRole="Persons" />
+          <NavigationProperty Name="PersonType" Relationship="Self.fk_PersonsToPersonType_PersonTypeId" FromRole="PersonsToPersonType" ToRole="PersonType" />
+        </EntityType>
+        <EntityType Name="PersonsToPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonGuid" Type="Guid" />
+          <Property Name="PhotoId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Person" Relationship="Self.fk_PersonsToPhoto_PersonGuid" FromRole="PersonsToPhoto" ToRole="Persons" />
+          <NavigationProperty Name="Photo" Relationship="Self.fk_PersonsToPhoto_PhotoId" FromRole="PersonsToPhoto" ToRole="Photos" />
+        </EntityType>
+        <EntityType Name="PersonType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="PersonsToPersonTypes" Relationship="Self.fk_PersonsToPersonType_PersonTypeId" FromRole="PersonType" ToRole="PersonsToPersonType" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="PersonsToPhotoes" Relationship="Self.fk_PersonsToPhoto_PhotoId" FromRole="Photos" ToRole="PersonsToPhoto" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="PropertyToModels" Relationship="Self.fk_PropertyToModels_PropertyId" FromRole="Property" ToRole="PropertyToModels" />
+          <NavigationProperty Name="PropertyToPropertyTypes" Relationship="Self.fk_PropertyToPropertyType_PropertyId" FromRole="Property" ToRole="PropertyToPropertyType" />
+          <NavigationProperty Name="PropertyToSeries" Relationship="Self.fk_PropertyToSeries_PropertyId" FromRole="Property" ToRole="PropertyToSeries" />
+        </EntityType>
+        <EntityType Name="PropertyToModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int64" />
+          <Property Name="ModelsId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Model" Relationship="Self.fk_PropertyToModels_ModelsId" FromRole="PropertyToModels" ToRole="Models" />
+          <NavigationProperty Name="Property" Relationship="Self.fk_PropertyToModels_PropertyId" FromRole="PropertyToModels" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="PropertyToPropertyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int64" />
+          <Property Name="PropertyTypeId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Property" Relationship="Self.fk_PropertyToPropertyType_PropertyId" FromRole="PropertyToPropertyType" ToRole="Property" />
+          <NavigationProperty Name="PropertyType" Relationship="Self.fk_PropertyToPropertyType_PropertyTypeId" FromRole="PropertyToPropertyType" ToRole="PropertyType" />
+        </EntityType>
+        <EntityType Name="PropertyToSery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int64" />
+          <Property Name="SeriesId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Property" Relationship="Self.fk_PropertyToSeries_PropertyId" FromRole="PropertyToSeries" ToRole="Property" />
+          <NavigationProperty Name="Series" Relationship="Self.fk_PropertyToSeries_SeriesId" FromRole="PropertyToSeries" ToRole="Series" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="PropertyToPropertyTypes" Relationship="Self.fk_PropertyToPropertyType_PropertyTypeId" FromRole="PropertyType" ToRole="PropertyToPropertyType" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="PropertyToSeries" Relationship="Self.fk_PropertyToSeries_SeriesId" FromRole="Series" ToRole="PropertyToSeries" />
+          <NavigationProperty Name="SeriesToDevices" Relationship="Self.fk_SeriesToDevices_SeriesId" FromRole="Series" ToRole="SeriesToDevices" />
+          <NavigationProperty Name="SeriesToModels" Relationship="Self.fk_SeriesToModels_SeriesId" FromRole="Series" ToRole="SeriesToModels" />
+        </EntityType>
+        <EntityType Name="SeriesToDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DevicesId" Type="Int64" />
+          <Property Name="SeriesId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Device" Relationship="Self.fk_SeriesToDevices_DevicesId" FromRole="SeriesToDevices" ToRole="Devices" />
+          <NavigationProperty Name="Series" Relationship="Self.fk_SeriesToDevices_SeriesId" FromRole="SeriesToDevices" ToRole="Series" />
+        </EntityType>
+        <EntityType Name="SeriesToModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelsId" Type="Int64" />
+          <Property Name="SeriesId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Model" Relationship="Self.fk_SeriesToModels_ModelsId" FromRole="SeriesToModels" ToRole="Models" />
+          <NavigationProperty Name="Series" Relationship="Self.fk_SeriesToModels_SeriesId" FromRole="SeriesToModels" ToRole="Series" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Devices" Relationship="Self.fk_Devices_VendorsId" FromRole="Vendors" ToRole="Devices" />
+          <NavigationProperty Name="VendorsToDeviceCategories" Relationship="Self.fk_VendorsToDeviceCategoryy_VendorsId" FromRole="Vendors" ToRole="VendorsToDeviceCategory" />
+          <NavigationProperty Name="VendorsToModels" Relationship="Self.fk_VendorsToModels_VendorsId" FromRole="Vendors" ToRole="VendorsToModels" />
+        </EntityType>
+        <EntityType Name="VendorsToDeviceCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorsId" Type="Int64" />
+          <Property Name="DevicesCategoryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="DeviceCategory" Relationship="Self.fk_VendorsToDeviceCategory_DevicesCategoryId" FromRole="VendorsToDeviceCategory" ToRole="DeviceCategory" />
+          <NavigationProperty Name="Vendor" Relationship="Self.fk_VendorsToDeviceCategoryy_VendorsId" FromRole="VendorsToDeviceCategory" ToRole="Vendors" />
+        </EntityType>
+        <EntityType Name="VendorsToModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorsId" Type="Int64" />
+          <Property Name="ModelsId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Model" Relationship="Self.fk_VendorsToModels_ModelsId" FromRole="VendorsToModels" ToRole="Models" />
+          <NavigationProperty Name="Vendor" Relationship="Self.fk_VendorsToModels_VendorsId" FromRole="VendorsToModels" ToRole="Vendors" />
+        </EntityType>
+        <Association Name="fk_AdvertsToAdvertType_AdvertId">
+          <End Role="Adverts" Type="Self.Advert" Multiplicity="0..1" />
+          <End Role="AdvertsToAdvertType" Type="Self.AdvertsToAdvertType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToAdvertType">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertsToDevices_AdvertId">
+          <End Role="Adverts" Type="Self.Advert" Multiplicity="0..1" />
+          <End Role="AdvertsToDevices" Type="Self.AdvertsToDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToDevices">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertVersion_AdvertId">
+          <End Role="Adverts" Type="Self.Advert" Multiplicity="0..1" />
+          <End Role="AdvertVersion" Type="Self.AdvertVersion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertVersion">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToAdvert_AdvertId">
+          <End Role="Adverts" Type="Self.Advert" Multiplicity="0..1" />
+          <End Role="PersonsToAdvert" Type="Self.PersonsToAdvert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adverts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonsToAdvert">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertsToAdvertType_AdvertTypeId">
+          <End Role="AdvertType" Type="Self.AdvertType" Multiplicity="0..1" />
+          <End Role="AdvertsToAdvertType" Type="Self.AdvertsToAdvertType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToAdvertType">
+              <PropertyRef Name="AdvertTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AdvertsToDevices_DevicesId">
+          <End Role="Devices" Type="Self.Device" Multiplicity="0..1" />
+          <End Role="AdvertsToDevices" Type="Self.AdvertsToDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvertsToDevices">
+              <PropertyRef Name="DevicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Devices_DeviceCategoryId">
+          <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="DeviceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ModelsToDeviceCategory_DevicesCategoryId">
+          <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
+          <End Role="ModelsToDeviceCategory" Type="Self.ModelsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModelsToDeviceCategory">
+              <PropertyRef Name="DevicesCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToDeviceCategory_DevicesCategoryId">
+          <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
+          <End Role="VendorsToDeviceCategory" Type="Self.VendorsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToDeviceCategory">
+              <PropertyRef Name="DevicesCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Devices_ModelsId">
+          <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Devices_VendorsId">
+          <End Role="Vendors" Type="Self.Vendor" Multiplicity="0..1" />
+          <End Role="Devices" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Devices">
+              <PropertyRef Name="VendorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToDevices_DevicesId">
+          <End Role="Devices" Type="Self.Device" Multiplicity="0..1" />
+          <End Role="SeriesToDevices" Type="Self.SeriesToDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToDevices">
+              <PropertyRef Name="DevicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ModelsToDeviceCategory_ModelsId">
+          <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="ModelsToDeviceCategory" Type="Self.ModelsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModelsToDeviceCategory">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToModels_ModelsId">
+          <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="PropertyToModels" Type="Self.PropertyToModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToModels">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToModels_ModelsId">
+          <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="SeriesToModels" Type="Self.SeriesToModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToModels">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToModels_ModelsId">
+          <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="VendorsToModels" Type="Self.VendorsToModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToModels">
+              <PropertyRef Name="ModelsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToAdvert_PersonGuid">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonsToAdvert" Type="Self.PersonsToAdvert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="PersonsToAdvert">
+              <PropertyRef Name="PersonGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPersonType_PersonGuid">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonsToPersonType" Type="Self.PersonsToPersonType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="PersonsToPersonType">
+              <PropertyRef Name="PersonGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPhoto_PersonGuid">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonsToPhoto" Type="Self.PersonsToPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="PersonsToPhoto">
+              <PropertyRef Name="PersonGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPersonType_PersonTypeId">
+          <End Role="PersonType" Type="Self.PersonType" Multiplicity="0..1" />
+          <End Role="PersonsToPersonType" Type="Self.PersonsToPersonType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonsToPersonType">
+              <PropertyRef Name="PersonTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonsToPhoto_PhotoId">
+          <End Role="Photos" Type="Self.Photo" Multiplicity="0..1" />
+          <End Role="PersonsToPhoto" Type="Self.PersonsToPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonsToPhoto">
+              <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToModels_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToModels" Type="Self.PropertyToModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToModels">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToPropertyType_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToPropertyType" Type="Self.PropertyToPropertyType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToPropertyType">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToSeries_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToSeries" Type="Self.PropertyToSery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToSeries">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToPropertyType_PropertyTypeId">
+          <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="0..1" />
+          <End Role="PropertyToPropertyType" Type="Self.PropertyToPropertyType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToPropertyType">
+              <PropertyRef Name="PropertyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToSeries_SeriesId">
+          <End Role="Series" Type="Self.Series" Multiplicity="0..1" />
+          <End Role="PropertyToSeries" Type="Self.PropertyToSery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToSeries">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToDevices_SeriesId">
+          <End Role="Series" Type="Self.Series" Multiplicity="0..1" />
+          <End Role="SeriesToDevices" Type="Self.SeriesToDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToDevices">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SeriesToModels_SeriesId">
+          <End Role="Series" Type="Self.Series" Multiplicity="0..1" />
+          <End Role="SeriesToModels" Type="Self.SeriesToModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeriesToModels">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToDeviceCategoryy_VendorsId">
+          <End Role="Vendors" Type="Self.Vendor" Multiplicity="0..1" />
+          <End Role="VendorsToDeviceCategory" Type="Self.VendorsToDeviceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToDeviceCategory">
+              <PropertyRef Name="VendorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VendorsToModels_VendorsId">
+          <End Role="Vendors" Type="Self.Vendor" Multiplicity="0..1" />
+          <End Role="VendorsToModels" Type="Self.VendorsToModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VendorsToModels">
+              <PropertyRef Name="VendorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LTopDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adverts" EntityType="Self.Advert" />
+          <EntitySet Name="AdvertsToAdvertTypes" EntityType="Self.AdvertsToAdvertType" />
+          <EntitySet Name="AdvertsToDevices" EntityType="Self.AdvertsToDevice" />
+          <EntitySet Name="AdvertTypes" EntityType="Self.AdvertType" />
+          <EntitySet Name="AdvertVersions" EntityType="Self.AdvertVersion" />
+          <EntitySet Name="DeviceCategories" EntityType="Self.DeviceCategory" />
+          <EntitySet Name="Devices" EntityType="Self.Device" />
+          <EntitySet Name="Models" EntityType="Self.Model" />
+          <EntitySet Name="ModelsToDeviceCategories" EntityType="Self.ModelsToDeviceCategory" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="PersonsToAdverts" EntityType="Self.PersonsToAdvert" />
+          <EntitySet Name="PersonsToPersonTypes" EntityType="Self.PersonsToPersonType" />
+          <EntitySet Name="PersonsToPhotoes" EntityType="Self.PersonsToPhoto" />
+          <EntitySet Name="PersonTypes" EntityType="Self.PersonType" />
+          <EntitySet Name="Photos" EntityType="Self.Photo" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="PropertyToModels" EntityType="Self.PropertyToModel" />
+          <EntitySet Name="PropertyToPropertyTypes" EntityType="Self.PropertyToPropertyType" />
+          <EntitySet Name="PropertyToSeries" EntityType="Self.PropertyToSery" />
+          <EntitySet Name="PropertyTypes" EntityType="Self.PropertyType" />
+          <EntitySet Name="Series" EntityType="Self.Series" />
+          <EntitySet Name="SeriesToDevices" EntityType="Self.SeriesToDevice" />
+          <EntitySet Name="SeriesToModels" EntityType="Self.SeriesToModel" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+          <EntitySet Name="VendorsToDeviceCategories" EntityType="Self.VendorsToDeviceCategory" />
+          <EntitySet Name="VendorsToModels" EntityType="Self.VendorsToModel" />
+          <AssociationSet Name="fk_AdvertsToAdvertType_AdvertId" Association="Self.fk_AdvertsToAdvertType_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="AdvertsToAdvertType" EntitySet="AdvertsToAdvertTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertsToDevices_AdvertId" Association="Self.fk_AdvertsToDevices_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="AdvertsToDevices" EntitySet="AdvertsToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertVersion_AdvertId" Association="Self.fk_AdvertVersion_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="AdvertVersion" EntitySet="AdvertVersions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToAdvert_AdvertId" Association="Self.fk_PersonsToAdvert_AdvertId">
+            <End Role="Adverts" EntitySet="Adverts" />
+            <End Role="PersonsToAdvert" EntitySet="PersonsToAdverts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertsToAdvertType_AdvertTypeId" Association="Self.fk_AdvertsToAdvertType_AdvertTypeId">
+            <End Role="AdvertType" EntitySet="AdvertTypes" />
+            <End Role="AdvertsToAdvertType" EntitySet="AdvertsToAdvertTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AdvertsToDevices_DevicesId" Association="Self.fk_AdvertsToDevices_DevicesId">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="AdvertsToDevices" EntitySet="AdvertsToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Devices_DeviceCategoryId" Association="Self.fk_Devices_DeviceCategoryId">
+            <End Role="DeviceCategory" EntitySet="DeviceCategories" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ModelsToDeviceCategory_DevicesCategoryId" Association="Self.fk_ModelsToDeviceCategory_DevicesCategoryId">
+            <End Role="DeviceCategory" EntitySet="DeviceCategories" />
+            <End Role="ModelsToDeviceCategory" EntitySet="ModelsToDeviceCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToDeviceCategory_DevicesCategoryId" Association="Self.fk_VendorsToDeviceCategory_DevicesCategoryId">
+            <End Role="DeviceCategory" EntitySet="DeviceCategories" />
+            <End Role="VendorsToDeviceCategory" EntitySet="VendorsToDeviceCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Devices_ModelsId" Association="Self.fk_Devices_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Devices_VendorsId" Association="Self.fk_Devices_VendorsId">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="Devices" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToDevices_DevicesId" Association="Self.fk_SeriesToDevices_DevicesId">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="SeriesToDevices" EntitySet="SeriesToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ModelsToDeviceCategory_ModelsId" Association="Self.fk_ModelsToDeviceCategory_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="ModelsToDeviceCategory" EntitySet="ModelsToDeviceCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToModels_ModelsId" Association="Self.fk_PropertyToModels_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="PropertyToModels" EntitySet="PropertyToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToModels_ModelsId" Association="Self.fk_SeriesToModels_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="SeriesToModels" EntitySet="SeriesToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToModels_ModelsId" Association="Self.fk_VendorsToModels_ModelsId">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="VendorsToModels" EntitySet="VendorsToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToAdvert_PersonGuid" Association="Self.fk_PersonsToAdvert_PersonGuid">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="PersonsToAdvert" EntitySet="PersonsToAdverts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPersonType_PersonGuid" Association="Self.fk_PersonsToPersonType_PersonGuid">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="PersonsToPersonType" EntitySet="PersonsToPersonTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPhoto_PersonGuid" Association="Self.fk_PersonsToPhoto_PersonGuid">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="PersonsToPhoto" EntitySet="PersonsToPhotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPersonType_PersonTypeId" Association="Self.fk_PersonsToPersonType_PersonTypeId">
+            <End Role="PersonType" EntitySet="PersonTypes" />
+            <End Role="PersonsToPersonType" EntitySet="PersonsToPersonTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonsToPhoto_PhotoId" Association="Self.fk_PersonsToPhoto_PhotoId">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="PersonsToPhoto" EntitySet="PersonsToPhotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToModels_PropertyId" Association="Self.fk_PropertyToModels_PropertyId">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="PropertyToModels" EntitySet="PropertyToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToPropertyType_PropertyId" Association="Self.fk_PropertyToPropertyType_PropertyId">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="PropertyToPropertyType" EntitySet="PropertyToPropertyTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToSeries_PropertyId" Association="Self.fk_PropertyToSeries_PropertyId">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="PropertyToSeries" EntitySet="PropertyToSeries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToPropertyType_PropertyTypeId" Association="Self.fk_PropertyToPropertyType_PropertyTypeId">
+            <End Role="PropertyType" EntitySet="PropertyTypes" />
+            <End Role="PropertyToPropertyType" EntitySet="PropertyToPropertyTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToSeries_SeriesId" Association="Self.fk_PropertyToSeries_SeriesId">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="PropertyToSeries" EntitySet="PropertyToSeries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToDevices_SeriesId" Association="Self.fk_SeriesToDevices_SeriesId">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="SeriesToDevices" EntitySet="SeriesToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SeriesToModels_SeriesId" Association="Self.fk_SeriesToModels_SeriesId">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="SeriesToModels" EntitySet="SeriesToModels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToDeviceCategoryy_VendorsId" Association="Self.fk_VendorsToDeviceCategoryy_VendorsId">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="VendorsToDeviceCategory" EntitySet="VendorsToDeviceCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VendorsToModels_VendorsId" Association="Self.fk_VendorsToModels_VendorsId">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="VendorsToModels" EntitySet="VendorsToModels" />
+          </AssociationSet>
+          <FunctionImport Name="CreateAdvertType" ReturnType="Collection(Decimal)">
+            <Parameter Name="NameEng" Mode="In" Type="String" />
+            <Parameter Name="NameRus" Mode="In" Type="String" />
+            <Parameter Name="NameUkr" Mode="In" Type="String" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreateModel" ReturnType="Collection(Decimal)">
+            <Parameter Name="NameEng" Mode="In" Type="String" />
+            <Parameter Name="NameRus" Mode="In" Type="String" />
+            <Parameter Name="NameUkr" Mode="In" Type="String" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePerson" ReturnType="Collection(Guid)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Skype" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Salt" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="IsBlocke" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePhoto" ReturnType="Collection(Int64)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreateProperty" ReturnType="Collection(Decimal)">
+            <Parameter Name="Value" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePropertyType" ReturnType="Collection(Decimal)">
+            <Parameter Name="NameEng" Mode="In" Type="String" />
+            <Parameter Name="NameRus" Mode="In" Type="String" />
+            <Parameter Name="NameUkr" Mode="In" Type="String" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreateSeries" ReturnType="Collection(Decimal)">
+            <Parameter Name="NameEng" Mode="In" Type="String" />
+            <Parameter Name="NameRus" Mode="In" Type="String" />
+            <Parameter Name="NameUkr" Mode="In" Type="String" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreateVendors" ReturnType="Collection(Decimal)">
+            <Parameter Name="NameEng" Mode="In" Type="String" />
+            <Parameter Name="NameRus" Mode="In" Type="String" />
+            <Parameter Name="NameUkr" Mode="In" Type="String" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteAdvertType" ReturnType="Collection(Int32)">
+            <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteModel" ReturnType="Collection(Int32)">
+            <Parameter Name="ModelId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePerson" ReturnType="Collection(Int32)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePhoto" ReturnType="Collection(Int32)">
+            <Parameter Name="PhotoId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePropertyType" ReturnType="Collection(Int32)">
+            <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteSeries" ReturnType="Collection(Int32)">
+            <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteVendors" ReturnType="Collection(Int32)">
+            <Parameter Name="VendorsId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAdvertType" ReturnType="Collection(Int32)">
+            <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="NewNameEng" Mode="In" Type="String" />
+            <Parameter Name="NewNameRus" Mode="In" Type="String" />
+            <Parameter Name="NewNameUkr" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateModel" ReturnType="Collection(Int32)">
+            <Parameter Name="ModelId" Mode="In" Type="Int64" />
+            <Parameter Name="NewNameEng" Mode="In" Type="String" />
+            <Parameter Name="NewNameRus" Mode="In" Type="String" />
+            <Parameter Name="NewNameUkr" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePerson" ReturnType="Collection(Int32)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+            <Parameter Name="NewName" Mode="In" Type="String" />
+            <Parameter Name="NewEmail" Mode="In" Type="String" />
+            <Parameter Name="NewPhone" Mode="In" Type="String" />
+            <Parameter Name="NewSkype" Mode="In" Type="String" />
+            <Parameter Name="NewPassword" Mode="In" Type="String" />
+            <Parameter Name="NewSalt" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="NewIsBlocke" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePhoto" ReturnType="Collection(Int32)">
+            <Parameter Name="PhotoId" Mode="In" Type="Int64" />
+            <Parameter Name="NewPhoto" Mode="In" Type="Binary" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePropertyType" ReturnType="Collection(Int32)">
+            <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="NewNameEng" Mode="In" Type="String" />
+            <Parameter Name="NewNameRus" Mode="In" Type="String" />
+            <Parameter Name="NewNameUkr" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateSeries" ReturnType="Collection(Int32)">
+            <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+            <Parameter Name="NewNameEng" Mode="In" Type="String" />
+            <Parameter Name="NewNameRus" Mode="In" Type="String" />
+            <Parameter Name="NewNameUkr" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateVendors" ReturnType="Collection(Int32)">
+            <Parameter Name="VendorsId" Mode="In" Type="Int64" />
+            <Parameter Name="NewNameEng" Mode="In" Type="String" />
+            <Parameter Name="NewNameRus" Mode="In" Type="String" />
+            <Parameter Name="NewNameUkr" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="NewDescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LTopDBModelStoreContainer" CdmEntityContainer="LTopDBEntities">
+          <EntitySetMapping Name="Adverts">
+            <EntityTypeMapping TypeName="LTopDBModel.Advert">
+              <MappingFragment StoreEntitySet="Adverts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertsToAdvertTypes">
+            <EntityTypeMapping TypeName="LTopDBModel.AdvertsToAdvertType">
+              <MappingFragment StoreEntitySet="AdvertsToAdvertType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdvertId" ColumnName="AdvertId" />
+                <ScalarProperty Name="AdvertTypeId" ColumnName="AdvertTypeId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertsToDevices">
+            <EntityTypeMapping TypeName="LTopDBModel.AdvertsToDevice">
+              <MappingFragment StoreEntitySet="AdvertsToDevices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdvertId" ColumnName="AdvertId" />
+                <ScalarProperty Name="DevicesId" ColumnName="DevicesId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertTypes">
+            <EntityTypeMapping TypeName="LTopDBModel.AdvertType">
+              <MappingFragment StoreEntitySet="AdvertType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertVersions">
+            <EntityTypeMapping TypeName="LTopDBModel.AdvertVersion">
+              <MappingFragment StoreEntitySet="AdvertVersion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdvertId" ColumnName="AdvertId" />
+                <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceCategories">
+            <EntityTypeMapping TypeName="LTopDBModel.DeviceCategory">
+              <MappingFragment StoreEntitySet="DeviceCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="LTopDBModel.Device">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VendorsId" ColumnName="VendorsId" />
+                <ScalarProperty Name="ModelsId" ColumnName="ModelsId" />
+                <ScalarProperty Name="DeviceCategoryId" ColumnName="DeviceCategoryId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Models">
+            <EntityTypeMapping TypeName="LTopDBModel.Model">
+              <MappingFragment StoreEntitySet="Models">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModelsToDeviceCategories">
+            <EntityTypeMapping TypeName="LTopDBModel.ModelsToDeviceCategory">
+              <MappingFragment StoreEntitySet="ModelsToDeviceCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModelsId" ColumnName="ModelsId" />
+                <ScalarProperty Name="DevicesCategoryId" ColumnName="DevicesCategoryId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="LTopDBModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonsToAdverts">
+            <EntityTypeMapping TypeName="LTopDBModel.PersonsToAdvert">
+              <MappingFragment StoreEntitySet="PersonsToAdvert">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PersonGuid" ColumnName="PersonGuid" />
+                <ScalarProperty Name="AdvertId" ColumnName="AdvertId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonsToPersonTypes">
+            <EntityTypeMapping TypeName="LTopDBModel.PersonsToPersonType">
+              <MappingFragment StoreEntitySet="PersonsToPersonType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PersonGuid" ColumnName="PersonGuid" />
+                <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonsToPhotoes">
+            <EntityTypeMapping TypeName="LTopDBModel.PersonsToPhoto">
+              <MappingFragment StoreEntitySet="PersonsToPhoto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PersonGuid" ColumnName="PersonGuid" />
+                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonTypes">
+            <EntityTypeMapping TypeName="LTopDBModel.PersonType">
+              <MappingFragment StoreEntitySet="PersonType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="LTopDBModel.Photo">
+              <MappingFragment StoreEntitySet="Photos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Photo1" ColumnName="Photo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="LTopDBModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyToModels">
+            <EntityTypeMapping TypeName="LTopDBModel.PropertyToModel">
+              <MappingFragment StoreEntitySet="PropertyToModels">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="ModelsId" ColumnName="ModelsId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyToPropertyTypes">
+            <EntityTypeMapping TypeName="LTopDBModel.PropertyToPropertyType">
+              <MappingFragment StoreEntitySet="PropertyToPropertyType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyToSeries">
+            <EntityTypeMapping TypeName="LTopDBModel.PropertyToSery">
+              <MappingFragment StoreEntitySet="PropertyToSeries">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTypes">
+            <EntityTypeMapping TypeName="LTopDBModel.PropertyType">
+              <MappingFragment StoreEntitySet="PropertyType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Series">
+            <EntityTypeMapping TypeName="LTopDBModel.Series">
+              <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeriesToDevices">
+            <EntityTypeMapping TypeName="LTopDBModel.SeriesToDevice">
+              <MappingFragment StoreEntitySet="SeriesToDevices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DevicesId" ColumnName="DevicesId" />
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeriesToModels">
+            <EntityTypeMapping TypeName="LTopDBModel.SeriesToModel">
+              <MappingFragment StoreEntitySet="SeriesToModels">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModelsId" ColumnName="ModelsId" />
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="LTopDBModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorsToDeviceCategories">
+            <EntityTypeMapping TypeName="LTopDBModel.VendorsToDeviceCategory">
+              <MappingFragment StoreEntitySet="VendorsToDeviceCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VendorsId" ColumnName="VendorsId" />
+                <ScalarProperty Name="DevicesCategoryId" ColumnName="DevicesCategoryId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorsToModels">
+            <EntityTypeMapping TypeName="LTopDBModel.VendorsToModel">
+              <MappingFragment StoreEntitySet="VendorsToModels">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VendorsId" ColumnName="VendorsId" />
+                <ScalarProperty Name="ModelsId" ColumnName="ModelsId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateAdvertType" FunctionName="LTopDBModel.Store.CreateAdvertType" />
+          <FunctionImportMapping FunctionImportName="CreateModel" FunctionName="LTopDBModel.Store.CreateModel" />
+          <FunctionImportMapping FunctionImportName="CreatePerson" FunctionName="LTopDBModel.Store.CreatePerson" />
+          <FunctionImportMapping FunctionImportName="CreatePhoto" FunctionName="LTopDBModel.Store.CreatePhoto" />
+          <FunctionImportMapping FunctionImportName="CreateProperty" FunctionName="LTopDBModel.Store.CreateProperty" />
+          <FunctionImportMapping FunctionImportName="CreatePropertyType" FunctionName="LTopDBModel.Store.CreatePropertyType" />
+          <FunctionImportMapping FunctionImportName="CreateSeries" FunctionName="LTopDBModel.Store.CreateSeries" />
+          <FunctionImportMapping FunctionImportName="CreateVendors" FunctionName="LTopDBModel.Store.CreateVendors" />
+          <FunctionImportMapping FunctionImportName="DeleteAdvertType" FunctionName="LTopDBModel.Store.DeleteAdvertType" />
+          <FunctionImportMapping FunctionImportName="DeleteModel" FunctionName="LTopDBModel.Store.DeleteModel" />
+          <FunctionImportMapping FunctionImportName="DeletePerson" FunctionName="LTopDBModel.Store.DeletePerson" />
+          <FunctionImportMapping FunctionImportName="DeletePhoto" FunctionName="LTopDBModel.Store.DeletePhoto" />
+          <FunctionImportMapping FunctionImportName="DeletePropertyType" FunctionName="LTopDBModel.Store.DeletePropertyType" />
+          <FunctionImportMapping FunctionImportName="DeleteSeries" FunctionName="LTopDBModel.Store.DeleteSeries" />
+          <FunctionImportMapping FunctionImportName="DeleteVendors" FunctionName="LTopDBModel.Store.DeleteVendors" />
+          <FunctionImportMapping FunctionImportName="UpdateAdvertType" FunctionName="LTopDBModel.Store.UpdateAdvertType" />
+          <FunctionImportMapping FunctionImportName="UpdateModel" FunctionName="LTopDBModel.Store.UpdateModel" />
+          <FunctionImportMapping FunctionImportName="UpdatePerson" FunctionName="LTopDBModel.Store.UpdatePerson" />
+          <FunctionImportMapping FunctionImportName="UpdatePhoto" FunctionName="LTopDBModel.Store.UpdatePhoto" />
+          <FunctionImportMapping FunctionImportName="UpdatePropertyType" FunctionName="LTopDBModel.Store.UpdatePropertyType" />
+          <FunctionImportMapping FunctionImportName="UpdateSeries" FunctionName="LTopDBModel.Store.UpdateSeries" />
+          <FunctionImportMapping FunctionImportName="UpdateVendors" FunctionName="LTopDBModel.Store.UpdateVendors" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

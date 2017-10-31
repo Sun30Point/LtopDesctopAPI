@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a2d781fc7eab4878942b71f18e51d896" Name="Diagram1">
+        <EntityTypeShape EntityType="LTopDBModel.Advert" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.AdvertsToAdvertType" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.AdvertsToDevice" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.AdvertType" Width="1.5" PointX="6" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.AdvertVersion" Width="1.5" PointX="8.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.DeviceCategory" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Device" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Model" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.ModelsToDeviceCategory" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Person" Width="1.5" PointX="10.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PersonsToAdvert" Width="1.5" PointX="13" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PersonsToPersonType" Width="1.5" PointX="13" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PersonsToPhoto" Width="1.5" PointX="13" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PersonType" Width="1.5" PointX="10.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Photo" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Property" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PropertyToModel" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PropertyToPropertyType" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PropertyToSery" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.PropertyType" Width="1.5" PointX="3.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Series" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.SeriesToDevice" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.SeriesToModel" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.Vendor" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.VendorsToDeviceCategory" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTopDBModel.VendorsToModel" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="LTopDBModel.fk_AdvertsToAdvertType_AdvertId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_AdvertsToDevices_AdvertId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_AdvertVersion_AdvertId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PersonsToAdvert_AdvertId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_AdvertsToAdvertType_AdvertTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_AdvertsToDevices_DevicesId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_Devices_DeviceCategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_ModelsToDeviceCategory_DevicesCategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_VendorsToDeviceCategory_DevicesCategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_Devices_ModelsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_Devices_VendorsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_SeriesToDevices_DevicesId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_ModelsToDeviceCategory_ModelsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PropertyToModels_ModelsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_SeriesToModels_ModelsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_VendorsToModels_ModelsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PersonsToAdvert_PersonGuid" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PersonsToPersonType_PersonGuid" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PersonsToPhoto_PersonGuid" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PersonsToPersonType_PersonTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PersonsToPhoto_PhotoId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PropertyToModels_PropertyId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PropertyToPropertyType_PropertyId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PropertyToSeries_PropertyId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PropertyToPropertyType_PropertyTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_PropertyToSeries_SeriesId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_SeriesToDevices_SeriesId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_SeriesToModels_SeriesId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_VendorsToDeviceCategoryy_VendorsId" ManuallyRouted="false" />
+        <AssociationConnector Association="LTopDBModel.fk_VendorsToModels_VendorsId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
