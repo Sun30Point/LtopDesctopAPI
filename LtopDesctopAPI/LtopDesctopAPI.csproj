@@ -156,6 +156,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\APIControllers\AdvertTypesController.cs" />
+    <Compile Include="Controllers\APIControllers\DeviceCategoryController.cs" />
+    <Compile Include="Controllers\APIControllers\ModelsController.cs" />
+    <Compile Include="Controllers\APIControllers\PersonsController.cs" />
+    <Compile Include="Controllers\APIControllers\PersonTypesController.cs" />
+    <Compile Include="Controllers\APIControllers\PhotoController.cs" />
+    <Compile Include="Controllers\APIControllers\PropertyTypesController.cs" />
+    <Compile Include="Controllers\APIControllers\SeriesController.cs" />
+    <Compile Include="Controllers\APIControllers\VendorsController.cs" />
     <Compile Include="EntityModel\Advert.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
@@ -224,6 +233,15 @@
     <Compile Include="EntityModel\Photo.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdvertTypes.cs" />
+    <Compile Include="Models\DeviceCategory.cs" />
+    <Compile Include="Models\Models.cs" />
+    <Compile Include="Models\Persons.cs" />
+    <Compile Include="Models\PersonTypes.cs" />
+    <Compile Include="Models\Photos.cs" />
+    <Compile Include="Models\PropertyTypes.cs" />
+    <Compile Include="Models\Series.cs" />
+    <Compile Include="Models\Vendors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityModel\Property.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
@@ -316,7 +334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
