@@ -54,7 +54,7 @@ namespace LtopDesctopAPI.EntityModel
         public virtual DbSet<VendorsToDeviceCategory> VendorsToDeviceCategories { get; set; }
         public virtual DbSet<VendorsToModel> VendorsToModels { get; set; }
     
-        public virtual ObjectResult<Nullable<decimal>> CreateAdvertType(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<decimal>> CreateAdvertType(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr)
         {
             var nameEngParameter = nameEng != null ?
                 new ObjectParameter("NameEng", nameEng) :
@@ -80,14 +80,10 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("DescriptionUkr", descriptionUkr) :
                 new ObjectParameter("DescriptionUkr", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateAdvertType", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateAdvertType", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> CreateModel(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<decimal>> CreateModel(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr)
         {
             var nameEngParameter = nameEng != null ?
                 new ObjectParameter("NameEng", nameEng) :
@@ -113,14 +109,10 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("DescriptionUkr", descriptionUkr) :
                 new ObjectParameter("DescriptionUkr", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateModel", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateModel", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> CreatePerson(Nullable<System.Guid> personGuid, string name, string email, string phone, string skype, string password, string salt, Nullable<bool> isActive, Nullable<bool> isBlocke)
+        public virtual ObjectResult<Nullable<System.Guid>> CreatePerson(Nullable<System.Guid> personGuid, string name, string email, string phone, string skype, string password, string salt)
         {
             var personGuidParameter = personGuid.HasValue ?
                 new ObjectParameter("PersonGuid", personGuid) :
@@ -150,18 +142,10 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("Salt", salt) :
                 new ObjectParameter("Salt", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            var isBlockeParameter = isBlocke.HasValue ?
-                new ObjectParameter("IsBlocke", isBlocke) :
-                new ObjectParameter("IsBlocke", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("CreatePerson", personGuidParameter, nameParameter, emailParameter, phoneParameter, skypeParameter, passwordParameter, saltParameter, isActiveParameter, isBlockeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("CreatePerson", personGuidParameter, nameParameter, emailParameter, phoneParameter, skypeParameter, passwordParameter, saltParameter);
         }
     
-        public virtual ObjectResult<Nullable<long>> CreatePhoto(Nullable<System.Guid> personGuid, byte[] photo, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<long>> CreatePhoto(Nullable<System.Guid> personGuid, byte[] photo)
         {
             var personGuidParameter = personGuid.HasValue ?
                 new ObjectParameter("PersonGuid", personGuid) :
@@ -171,27 +155,19 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("Photo", photo) :
                 new ObjectParameter("Photo", typeof(byte[]));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreatePhoto", personGuidParameter, photoParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreatePhoto", personGuidParameter, photoParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> CreateProperty(string value, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<decimal>> CreateProperty(string value)
         {
             var valueParameter = value != null ?
                 new ObjectParameter("Value", value) :
                 new ObjectParameter("Value", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateProperty", valueParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateProperty", valueParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> CreatePropertyType(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<decimal>> CreatePropertyType(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr)
         {
             var nameEngParameter = nameEng != null ?
                 new ObjectParameter("NameEng", nameEng) :
@@ -217,14 +193,10 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("DescriptionUkr", descriptionUkr) :
                 new ObjectParameter("DescriptionUkr", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreatePropertyType", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreatePropertyType", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> CreateSeries(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<decimal>> CreateSeries(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr)
         {
             var nameEngParameter = nameEng != null ?
                 new ObjectParameter("NameEng", nameEng) :
@@ -250,14 +222,10 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("DescriptionUkr", descriptionUkr) :
                 new ObjectParameter("DescriptionUkr", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateSeries", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateSeries", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> CreateVendors(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive)
+        public virtual ObjectResult<Nullable<decimal>> CreateVendors(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr)
         {
             var nameEngParameter = nameEng != null ?
                 new ObjectParameter("NameEng", nameEng) :
@@ -283,11 +251,7 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("DescriptionUkr", descriptionUkr) :
                 new ObjectParameter("DescriptionUkr", typeof(string));
     
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateVendors", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CreateVendors", nameEngParameter, nameRusParameter, nameUkrParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> DeleteAdvertType(Nullable<long> advertTypeId)
@@ -594,6 +558,141 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("NewIsActive", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UpdateVendors", vendorsIdParameter, newNameEngParameter, newNameRusParameter, newNameUkrParameter, newDescriptionEngParameter, newDescriptionRusParameter, newDescriptionUkrParameter, newIsActiveParameter);
+        }
+    
+        public virtual int CreatePropertyDevice(string propertyValue, Nullable<long> propertyTypeId, Nullable<long> deviceId)
+        {
+            var propertyValueParameter = propertyValue != null ?
+                new ObjectParameter("PropertyValue", propertyValue) :
+                new ObjectParameter("PropertyValue", typeof(string));
+    
+            var propertyTypeIdParameter = propertyTypeId.HasValue ?
+                new ObjectParameter("PropertyTypeId", propertyTypeId) :
+                new ObjectParameter("PropertyTypeId", typeof(long));
+    
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreatePropertyDevice", propertyValueParameter, propertyTypeIdParameter, deviceIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> CreatePropertyModels(string propertyValue, Nullable<long> propertyTypeId, Nullable<long> modelId)
+        {
+            var propertyValueParameter = propertyValue != null ?
+                new ObjectParameter("PropertyValue", propertyValue) :
+                new ObjectParameter("PropertyValue", typeof(string));
+    
+            var propertyTypeIdParameter = propertyTypeId.HasValue ?
+                new ObjectParameter("PropertyTypeId", propertyTypeId) :
+                new ObjectParameter("PropertyTypeId", typeof(long));
+    
+            var modelIdParameter = modelId.HasValue ?
+                new ObjectParameter("ModelId", modelId) :
+                new ObjectParameter("ModelId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreatePropertyModels", propertyValueParameter, propertyTypeIdParameter, modelIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> CreatePropertySeries(string propertyValue, Nullable<long> propertyTypeId, Nullable<long> seriesId)
+        {
+            var propertyValueParameter = propertyValue != null ?
+                new ObjectParameter("PropertyValue", propertyValue) :
+                new ObjectParameter("PropertyValue", typeof(string));
+    
+            var propertyTypeIdParameter = propertyTypeId.HasValue ?
+                new ObjectParameter("PropertyTypeId", propertyTypeId) :
+                new ObjectParameter("PropertyTypeId", typeof(long));
+    
+            var seriesIdParameter = seriesId.HasValue ?
+                new ObjectParameter("SeriesId", seriesId) :
+                new ObjectParameter("SeriesId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreatePropertySeries", propertyValueParameter, propertyTypeIdParameter, seriesIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> DeleteProperty(Nullable<long> propertyId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("DeleteProperty", propertyIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UpdatePropertyDevice(Nullable<long> propertyId, string newPropertyValue, Nullable<bool> newIsActive, Nullable<long> newPropertyTypeId, Nullable<long> newDeviceId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(long));
+    
+            var newPropertyValueParameter = newPropertyValue != null ?
+                new ObjectParameter("NewPropertyValue", newPropertyValue) :
+                new ObjectParameter("NewPropertyValue", typeof(string));
+    
+            var newIsActiveParameter = newIsActive.HasValue ?
+                new ObjectParameter("NewIsActive", newIsActive) :
+                new ObjectParameter("NewIsActive", typeof(bool));
+    
+            var newPropertyTypeIdParameter = newPropertyTypeId.HasValue ?
+                new ObjectParameter("NewPropertyTypeId", newPropertyTypeId) :
+                new ObjectParameter("NewPropertyTypeId", typeof(long));
+    
+            var newDeviceIdParameter = newDeviceId.HasValue ?
+                new ObjectParameter("NewDeviceId", newDeviceId) :
+                new ObjectParameter("NewDeviceId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UpdatePropertyDevice", propertyIdParameter, newPropertyValueParameter, newIsActiveParameter, newPropertyTypeIdParameter, newDeviceIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UpdatePropertyModels(Nullable<long> propertyId, string newPropertyValue, Nullable<bool> newIsActive, Nullable<long> newPropertyTypeId, Nullable<long> newModelsId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(long));
+    
+            var newPropertyValueParameter = newPropertyValue != null ?
+                new ObjectParameter("NewPropertyValue", newPropertyValue) :
+                new ObjectParameter("NewPropertyValue", typeof(string));
+    
+            var newIsActiveParameter = newIsActive.HasValue ?
+                new ObjectParameter("NewIsActive", newIsActive) :
+                new ObjectParameter("NewIsActive", typeof(bool));
+    
+            var newPropertyTypeIdParameter = newPropertyTypeId.HasValue ?
+                new ObjectParameter("NewPropertyTypeId", newPropertyTypeId) :
+                new ObjectParameter("NewPropertyTypeId", typeof(long));
+    
+            var newModelsIdParameter = newModelsId.HasValue ?
+                new ObjectParameter("NewModelsId", newModelsId) :
+                new ObjectParameter("NewModelsId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UpdatePropertyModels", propertyIdParameter, newPropertyValueParameter, newIsActiveParameter, newPropertyTypeIdParameter, newModelsIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UpdatePropertySeries(Nullable<long> propertyId, string newPropertyValue, Nullable<bool> newIsActive, Nullable<long> newPropertyTypeId, Nullable<long> newSeriesId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(long));
+    
+            var newPropertyValueParameter = newPropertyValue != null ?
+                new ObjectParameter("NewPropertyValue", newPropertyValue) :
+                new ObjectParameter("NewPropertyValue", typeof(string));
+    
+            var newIsActiveParameter = newIsActive.HasValue ?
+                new ObjectParameter("NewIsActive", newIsActive) :
+                new ObjectParameter("NewIsActive", typeof(bool));
+    
+            var newPropertyTypeIdParameter = newPropertyTypeId.HasValue ?
+                new ObjectParameter("NewPropertyTypeId", newPropertyTypeId) :
+                new ObjectParameter("NewPropertyTypeId", typeof(long));
+    
+            var newSeriesIdParameter = newSeriesId.HasValue ?
+                new ObjectParameter("NewSeriesId", newSeriesId) :
+                new ObjectParameter("NewSeriesId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UpdatePropertySeries", propertyIdParameter, newPropertyValueParameter, newIsActiveParameter, newPropertyTypeIdParameter, newSeriesIdParameter);
         }
     }
 }

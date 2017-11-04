@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LTopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LTopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adverts">
           <Key>
             <PropertyRef Name="ID" />
@@ -633,7 +633,6 @@
           <Parameter Name="DescriptionEng" Type="text" Mode="In" />
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="CreateModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
@@ -642,7 +641,6 @@
           <Parameter Name="DescriptionEng" Type="text" Mode="In" />
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="CreatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
@@ -652,17 +650,28 @@
           <Parameter Name="Skype" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Salt" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
-          <Parameter Name="IsBlocke" Type="bit" Mode="In" />
         </Function>
         <Function Name="CreatePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Photo" Type="image" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="CreateProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Value" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreatePropertyDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyValue" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="CreatePropertyModels" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyValue" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="ModelId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="CreatePropertySeries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyValue" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="SeriesId" Type="bigint" Mode="In" />
         </Function>
         <Function Name="CreatePropertyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
@@ -671,7 +680,6 @@
           <Parameter Name="DescriptionEng" Type="text" Mode="In" />
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="CreateSeries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
@@ -680,7 +688,6 @@
           <Parameter Name="DescriptionEng" Type="text" Mode="In" />
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="CreateVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
@@ -689,7 +696,6 @@
           <Parameter Name="DescriptionEng" Type="text" Mode="In" />
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
-          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="DeleteAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
@@ -702,6 +708,9 @@
         </Function>
         <Function Name="DeletePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PhotoId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeleteProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="bigint" Mode="In" />
         </Function>
         <Function Name="DeletePropertyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
@@ -747,6 +756,27 @@
           <Parameter Name="PhotoId" Type="bigint" Mode="In" />
           <Parameter Name="NewPhoto" Type="image" Mode="In" />
           <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdatePropertyDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="bigint" Mode="In" />
+          <Parameter Name="NewPropertyValue" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+          <Parameter Name="NewPropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="NewDeviceId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdatePropertyModels" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="bigint" Mode="In" />
+          <Parameter Name="NewPropertyValue" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+          <Parameter Name="NewPropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="NewModelsId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdatePropertySeries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="bigint" Mode="In" />
+          <Parameter Name="NewPropertyValue" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+          <Parameter Name="NewPropertyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="NewSeriesId" Type="bigint" Mode="In" />
         </Function>
         <Function Name="UpdatePropertyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PropertyTypeId" Type="bigint" Mode="In" />
@@ -926,8 +956,7 @@
             <End Role="VendorsToModels" EntitySet="VendorsToModels" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LTopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1766,7 +1795,6 @@
             <Parameter Name="DescriptionEng" Mode="In" Type="String" />
             <Parameter Name="DescriptionRus" Mode="In" Type="String" />
             <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreateModel" ReturnType="Collection(Decimal)">
             <Parameter Name="NameEng" Mode="In" Type="String" />
@@ -1775,7 +1803,6 @@
             <Parameter Name="DescriptionEng" Mode="In" Type="String" />
             <Parameter Name="DescriptionRus" Mode="In" Type="String" />
             <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreatePerson" ReturnType="Collection(Guid)">
             <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
@@ -1785,17 +1812,13 @@
             <Parameter Name="Skype" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Salt" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
-            <Parameter Name="IsBlocke" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreatePhoto" ReturnType="Collection(Int64)">
             <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
             <Parameter Name="Photo" Mode="In" Type="Binary" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreateProperty" ReturnType="Collection(Decimal)">
             <Parameter Name="Value" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreatePropertyType" ReturnType="Collection(Decimal)">
             <Parameter Name="NameEng" Mode="In" Type="String" />
@@ -1804,7 +1827,6 @@
             <Parameter Name="DescriptionEng" Mode="In" Type="String" />
             <Parameter Name="DescriptionRus" Mode="In" Type="String" />
             <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreateSeries" ReturnType="Collection(Decimal)">
             <Parameter Name="NameEng" Mode="In" Type="String" />
@@ -1813,7 +1835,6 @@
             <Parameter Name="DescriptionEng" Mode="In" Type="String" />
             <Parameter Name="DescriptionRus" Mode="In" Type="String" />
             <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="CreateVendors" ReturnType="Collection(Decimal)">
             <Parameter Name="NameEng" Mode="In" Type="String" />
@@ -1822,28 +1843,27 @@
             <Parameter Name="DescriptionEng" Mode="In" Type="String" />
             <Parameter Name="DescriptionRus" Mode="In" Type="String" />
             <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="DeleteAdvertType" ReturnType="Collection(Int32)">
-            <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
+          <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="DeleteModel" ReturnType="Collection(Int32)">
-            <Parameter Name="ModelId" Mode="In" Type="Int64" />
+          <Parameter Name="ModelId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="DeletePerson" ReturnType="Collection(Int32)">
-            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+          <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="DeletePhoto" ReturnType="Collection(Int32)">
-            <Parameter Name="PhotoId" Mode="In" Type="Int64" />
+          <Parameter Name="PhotoId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="DeletePropertyType" ReturnType="Collection(Int32)">
-            <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
+          <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="DeleteSeries" ReturnType="Collection(Int32)">
-            <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+          <Parameter Name="SeriesId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="DeleteVendors" ReturnType="Collection(Int32)">
-            <Parameter Name="VendorsId" Mode="In" Type="Int64" />
+          <Parameter Name="VendorsId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="UpdateAdvertType" ReturnType="Collection(Int32)">
             <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
@@ -1910,6 +1930,45 @@
             <Parameter Name="NewDescriptionRus" Mode="In" Type="String" />
             <Parameter Name="NewDescriptionUkr" Mode="In" Type="String" />
             <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePropertyDevice">
+            <Parameter Name="PropertyValue" Mode="In" Type="String" />
+            <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePropertyModels" ReturnType="Collection(Int64)">
+            <Parameter Name="PropertyValue" Mode="In" Type="String" />
+            <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="ModelId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePropertySeries" ReturnType="Collection(Int64)">
+            <Parameter Name="PropertyValue" Mode="In" Type="String" />
+            <Parameter Name="PropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProperty" ReturnType="Collection(Int32)">
+          <Parameter Name="PropertyId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePropertyDevice" ReturnType="Collection(Int64)">
+            <Parameter Name="PropertyId" Mode="In" Type="Int64" />
+            <Parameter Name="NewPropertyValue" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="NewPropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="NewDeviceId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePropertyModels" ReturnType="Collection(Int64)">
+            <Parameter Name="PropertyId" Mode="In" Type="Int64" />
+            <Parameter Name="NewPropertyValue" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="NewPropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="NewModelsId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePropertySeries" ReturnType="Collection(Int64)">
+            <Parameter Name="PropertyId" Mode="In" Type="Int64" />
+            <Parameter Name="NewPropertyValue" Mode="In" Type="String" />
+            <Parameter Name="NewIsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="NewPropertyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="NewSeriesId" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -2227,6 +2286,13 @@
           <FunctionImportMapping FunctionImportName="UpdatePropertyType" FunctionName="LTopDBModel.Store.UpdatePropertyType" />
           <FunctionImportMapping FunctionImportName="UpdateSeries" FunctionName="LTopDBModel.Store.UpdateSeries" />
           <FunctionImportMapping FunctionImportName="UpdateVendors" FunctionName="LTopDBModel.Store.UpdateVendors" />
+          <FunctionImportMapping FunctionImportName="CreatePropertyDevice" FunctionName="LTopDBModel.Store.CreatePropertyDevice" />
+          <FunctionImportMapping FunctionImportName="CreatePropertyModels" FunctionName="LTopDBModel.Store.CreatePropertyModels" />
+          <FunctionImportMapping FunctionImportName="CreatePropertySeries" FunctionName="LTopDBModel.Store.CreatePropertySeries" />
+          <FunctionImportMapping FunctionImportName="DeleteProperty" FunctionName="LTopDBModel.Store.DeleteProperty" />
+          <FunctionImportMapping FunctionImportName="UpdatePropertyDevice" FunctionName="LTopDBModel.Store.UpdatePropertyDevice" />
+          <FunctionImportMapping FunctionImportName="UpdatePropertyModels" FunctionName="LTopDBModel.Store.UpdatePropertyModels" />
+          <FunctionImportMapping FunctionImportName="UpdatePropertySeries" FunctionName="LTopDBModel.Store.UpdatePropertySeries" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

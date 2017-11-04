@@ -47,7 +47,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         [HttpPost]
         public long CreateItem(Models.AdvertTypes value)
         {
-            var NewId = db.CreateAdvertType(value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr, value.IsActive);
+            var NewId = db.CreateAdvertType(value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr);
             return (long)NewId.FirstOrDefault();
         }
 
@@ -55,18 +55,18 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         [HttpPut]
         public long UpdateItem(Models.AdvertTypes value)
         {
-            var Id = db.UpdateAdvertType(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr, value.IsActive);
-            return (long)Id.FirstOrDefault();
+            var result = db.UpdateAdvertType(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr, value.IsActive);
+            return value.ID;
         }
 
 
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        public long DeleteItem(long id)
+        public long DeleteItem(Models.AdvertTypes value)
         {
-            var Id = db.DeleteAdvertType(id);
-            return (long)Id.FirstOrDefault();
+            var result = db.DeleteAdvertType(value.ID);
+            return value.ID;
         }
     }
 }

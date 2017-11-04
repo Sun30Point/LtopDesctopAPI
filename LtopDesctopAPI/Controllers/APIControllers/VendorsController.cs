@@ -48,7 +48,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         [HttpPost]
         public long CreateItem(Models.Vendors value)
         {
-            var NewId = db.CreateVendors(value.NameEng,value.NameRus,value.NameUkr,value.DescriptionEng,value.DescriptionRus,value.DescriptionUkr,value.IsActive);
+            var NewId = db.CreateVendors(value.NameEng,value.NameRus,value.NameUkr,value.DescriptionEng,value.DescriptionRus,value.DescriptionUkr);
             return (long)NewId.FirstOrDefault();
         }
 
@@ -56,16 +56,16 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         [HttpPut]
         public long UpdateItem(Models.Vendors value)
         {
-            var Id = db.UpdateVendors(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr,value.IsActive);
-            return (long)Id.FirstOrDefault();
+            var result = db.UpdateVendors(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr,value.IsActive);
+            return value.ID;
         }
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        public long DeleteItem(long id)
+        public long DeleteItem(Models.Vendors value)
         {
-            var Id = db.DeleteVendors(id);
-            return (long)Id.FirstOrDefault();
+            var result = db.DeleteVendors(value.ID);
+            return value.ID;
         }
     }
 }

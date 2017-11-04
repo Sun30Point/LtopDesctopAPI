@@ -162,6 +162,7 @@
     <Compile Include="Controllers\APIControllers\PersonsController.cs" />
     <Compile Include="Controllers\APIControllers\PersonTypesController.cs" />
     <Compile Include="Controllers\APIControllers\PhotoController.cs" />
+    <Compile Include="Controllers\APIControllers\PropertyController.cs" />
     <Compile Include="Controllers\APIControllers\PropertyTypesController.cs" />
     <Compile Include="Controllers\APIControllers\SeriesController.cs" />
     <Compile Include="Controllers\APIControllers\VendorsController.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Models\Persons.cs" />
     <Compile Include="Models\PersonTypes.cs" />
     <Compile Include="Models\Photos.cs" />
+    <Compile Include="Models\Properties.cs" />
     <Compile Include="Models\PropertyTypes.cs" />
     <Compile Include="Models\Series.cs" />
     <Compile Include="Models\Vendors.cs" />

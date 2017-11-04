@@ -58,9 +58,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
                 item.Phone,
                 item.Skype,
                 item.Password,
-                item.Salt,
-                item.IsActive,
-                item.IsBlocked);
+                item.Salt);
             return item.Guid;
         }
 
@@ -87,7 +85,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         [HttpDelete]
         public Guid DeleteItem(Guid PersonGuid)
         {
-            var Id = db.DeletePerson(PersonGuid);
+            var result = db.DeletePerson(PersonGuid);
             return PersonGuid;
         }
     }
