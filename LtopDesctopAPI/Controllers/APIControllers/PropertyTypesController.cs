@@ -7,8 +7,10 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class PropertyTypesController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+        //--------------------------------------------------Get-------------------------------------------------------------
         [HttpGet]
         public List<Models.PropertyTypes> GetList()
         {
@@ -25,7 +27,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
         [HttpGet]
         public Models.PropertyTypes GetItem(int id)
         {
@@ -43,7 +45,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         }
 
 
-        // POST api/<controller>/5
+        //--------------------------------------------------Create----------------------------------------------------------
         [HttpPost]
         public long CreateItem(Models.PropertyTypes value)
         {
@@ -51,7 +53,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             return (long)NewId.FirstOrDefault();
         }
 
-        // PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
         [HttpPut]
         public long UpdateItem(Models.PropertyTypes value)
         {
@@ -60,8 +62,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         }
 
 
-
-        // DELETE api/<controller>/5
+        //--------------------------------------------------Delete---------------------------------------------------------
         [HttpDelete]
         public long DeleteItem(Models.PropertyTypes value)
         {

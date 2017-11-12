@@ -53,6 +53,8 @@ namespace LtopDesctopAPI.EntityModel
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<VendorsToDeviceCategory> VendorsToDeviceCategories { get; set; }
         public virtual DbSet<VendorsToModel> VendorsToModels { get; set; }
+        public virtual DbSet<DevicesToPhoto> DevicesToPhotoes { get; set; }
+        public virtual DbSet<PropertyToDevice> PropertyToDevices { get; set; }
     
         public virtual ObjectResult<Nullable<decimal>> CreateAdvertType(string nameEng, string nameRus, string nameUkr, string descriptionEng, string descriptionRus, string descriptionUkr)
         {
@@ -693,6 +695,220 @@ namespace LtopDesctopAPI.EntityModel
                 new ObjectParameter("NewSeriesId", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UpdatePropertySeries", propertyIdParameter, newPropertyValueParameter, newIsActiveParameter, newPropertyTypeIdParameter, newSeriesIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> DeleteAdverts(Nullable<long> advertId)
+        {
+            var advertIdParameter = advertId.HasValue ?
+                new ObjectParameter("AdvertId", advertId) :
+                new ObjectParameter("AdvertId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("DeleteAdverts", advertIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> DeleteDevices(Nullable<long> deviceId)
+        {
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("DeleteDevices", deviceIdParameter);
+        }
+    
+        public virtual ObjectResult<GetPropertySeries_Result> GetPropertySeries(Nullable<long> seriesId)
+        {
+            var seriesIdParameter = seriesId.HasValue ?
+                new ObjectParameter("SeriesId", seriesId) :
+                new ObjectParameter("SeriesId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPropertySeries_Result>("GetPropertySeries", seriesIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> CreateDevicePhoto(Nullable<long> deviceId, byte[] photo)
+        {
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            var photoParameter = photo != null ?
+                new ObjectParameter("Photo", photo) :
+                new ObjectParameter("Photo", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreateDevicePhoto", deviceIdParameter, photoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> CreatePersonPhoto(Nullable<System.Guid> personGuid, byte[] photo)
+        {
+            var personGuidParameter = personGuid.HasValue ?
+                new ObjectParameter("PersonGuid", personGuid) :
+                new ObjectParameter("PersonGuid", typeof(System.Guid));
+    
+            var photoParameter = photo != null ?
+                new ObjectParameter("Photo", photo) :
+                new ObjectParameter("Photo", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreatePersonPhoto", personGuidParameter, photoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> CreateDevice(string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<int> deviceCategoryId, Nullable<long> vendorsId, Nullable<long> modelsId, Nullable<long> seriesId)
+        {
+            var descriptionEngParameter = descriptionEng != null ?
+                new ObjectParameter("DescriptionEng", descriptionEng) :
+                new ObjectParameter("DescriptionEng", typeof(string));
+    
+            var descriptionRusParameter = descriptionRus != null ?
+                new ObjectParameter("DescriptionRus", descriptionRus) :
+                new ObjectParameter("DescriptionRus", typeof(string));
+    
+            var descriptionUkrParameter = descriptionUkr != null ?
+                new ObjectParameter("DescriptionUkr", descriptionUkr) :
+                new ObjectParameter("DescriptionUkr", typeof(string));
+    
+            var deviceCategoryIdParameter = deviceCategoryId.HasValue ?
+                new ObjectParameter("DeviceCategoryId", deviceCategoryId) :
+                new ObjectParameter("DeviceCategoryId", typeof(int));
+    
+            var vendorsIdParameter = vendorsId.HasValue ?
+                new ObjectParameter("VendorsId", vendorsId) :
+                new ObjectParameter("VendorsId", typeof(long));
+    
+            var modelsIdParameter = modelsId.HasValue ?
+                new ObjectParameter("ModelsId", modelsId) :
+                new ObjectParameter("ModelsId", typeof(long));
+    
+            var seriesIdParameter = seriesId.HasValue ?
+                new ObjectParameter("SeriesId", seriesId) :
+                new ObjectParameter("SeriesId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreateDevice", descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, deviceCategoryIdParameter, vendorsIdParameter, modelsIdParameter, seriesIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UpdateDevice(Nullable<long> deviceId, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive, Nullable<int> deviceCategoryId, Nullable<long> vendorsId, Nullable<long> modelsId, Nullable<long> seriesId)
+        {
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            var descriptionEngParameter = descriptionEng != null ?
+                new ObjectParameter("DescriptionEng", descriptionEng) :
+                new ObjectParameter("DescriptionEng", typeof(string));
+    
+            var descriptionRusParameter = descriptionRus != null ?
+                new ObjectParameter("DescriptionRus", descriptionRus) :
+                new ObjectParameter("DescriptionRus", typeof(string));
+    
+            var descriptionUkrParameter = descriptionUkr != null ?
+                new ObjectParameter("DescriptionUkr", descriptionUkr) :
+                new ObjectParameter("DescriptionUkr", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            var deviceCategoryIdParameter = deviceCategoryId.HasValue ?
+                new ObjectParameter("DeviceCategoryId", deviceCategoryId) :
+                new ObjectParameter("DeviceCategoryId", typeof(int));
+    
+            var vendorsIdParameter = vendorsId.HasValue ?
+                new ObjectParameter("VendorsId", vendorsId) :
+                new ObjectParameter("VendorsId", typeof(long));
+    
+            var modelsIdParameter = modelsId.HasValue ?
+                new ObjectParameter("ModelsId", modelsId) :
+                new ObjectParameter("ModelsId", typeof(long));
+    
+            var seriesIdParameter = seriesId.HasValue ?
+                new ObjectParameter("SeriesId", seriesId) :
+                new ObjectParameter("SeriesId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UpdateDevice", deviceIdParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter, deviceCategoryIdParameter, vendorsIdParameter, modelsIdParameter, seriesIdParameter);
+        }
+    
+        public virtual int UpdateDevicePhoto(Nullable<long> deviceId, Nullable<long> photoId, byte[] photo, Nullable<bool> isActive)
+        {
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            var photoIdParameter = photoId.HasValue ?
+                new ObjectParameter("PhotoId", photoId) :
+                new ObjectParameter("PhotoId", typeof(long));
+    
+            var photoParameter = photo != null ?
+                new ObjectParameter("Photo", photo) :
+                new ObjectParameter("Photo", typeof(byte[]));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateDevicePhoto", deviceIdParameter, photoIdParameter, photoParameter, isActiveParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> CreateAdverts(Nullable<System.Guid> personGuid, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<long> advertTypeId, Nullable<long> deviceId)
+        {
+            var personGuidParameter = personGuid.HasValue ?
+                new ObjectParameter("PersonGuid", personGuid) :
+                new ObjectParameter("PersonGuid", typeof(System.Guid));
+    
+            var descriptionEngParameter = descriptionEng != null ?
+                new ObjectParameter("DescriptionEng", descriptionEng) :
+                new ObjectParameter("DescriptionEng", typeof(string));
+    
+            var descriptionRusParameter = descriptionRus != null ?
+                new ObjectParameter("DescriptionRus", descriptionRus) :
+                new ObjectParameter("DescriptionRus", typeof(string));
+    
+            var descriptionUkrParameter = descriptionUkr != null ?
+                new ObjectParameter("DescriptionUkr", descriptionUkr) :
+                new ObjectParameter("DescriptionUkr", typeof(string));
+    
+            var advertTypeIdParameter = advertTypeId.HasValue ?
+                new ObjectParameter("AdvertTypeId", advertTypeId) :
+                new ObjectParameter("AdvertTypeId", typeof(long));
+    
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("CreateAdverts", personGuidParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, advertTypeIdParameter, deviceIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UpdateAdverts(Nullable<System.Guid> personGuid, Nullable<long> advertsId, string descriptionEng, string descriptionRus, string descriptionUkr, Nullable<bool> isActive, Nullable<long> advertTypeId, Nullable<long> deviceId)
+        {
+            var personGuidParameter = personGuid.HasValue ?
+                new ObjectParameter("PersonGuid", personGuid) :
+                new ObjectParameter("PersonGuid", typeof(System.Guid));
+    
+            var advertsIdParameter = advertsId.HasValue ?
+                new ObjectParameter("AdvertsId", advertsId) :
+                new ObjectParameter("AdvertsId", typeof(long));
+    
+            var descriptionEngParameter = descriptionEng != null ?
+                new ObjectParameter("DescriptionEng", descriptionEng) :
+                new ObjectParameter("DescriptionEng", typeof(string));
+    
+            var descriptionRusParameter = descriptionRus != null ?
+                new ObjectParameter("DescriptionRus", descriptionRus) :
+                new ObjectParameter("DescriptionRus", typeof(string));
+    
+            var descriptionUkrParameter = descriptionUkr != null ?
+                new ObjectParameter("DescriptionUkr", descriptionUkr) :
+                new ObjectParameter("DescriptionUkr", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            var advertTypeIdParameter = advertTypeId.HasValue ?
+                new ObjectParameter("AdvertTypeId", advertTypeId) :
+                new ObjectParameter("AdvertTypeId", typeof(long));
+    
+            var deviceIdParameter = deviceId.HasValue ?
+                new ObjectParameter("DeviceId", deviceId) :
+                new ObjectParameter("DeviceId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UpdateAdverts", personGuidParameter, advertsIdParameter, descriptionEngParameter, descriptionRusParameter, descriptionUkrParameter, isActiveParameter, advertTypeIdParameter, deviceIdParameter);
         }
     }
 }

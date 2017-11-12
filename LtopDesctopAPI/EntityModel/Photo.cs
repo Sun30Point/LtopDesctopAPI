@@ -18,6 +18,7 @@ namespace LtopDesctopAPI.EntityModel
         public Photo()
         {
             this.PersonsToPhotoes = new HashSet<PersonsToPhoto>();
+            this.DevicesToPhotoes = new HashSet<DevicesToPhoto>();
         }
     
         public long ID { get; set; }
@@ -26,5 +27,7 @@ namespace LtopDesctopAPI.EntityModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonsToPhoto> PersonsToPhotoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DevicesToPhoto> DevicesToPhotoes { get; set; }
     }
 }

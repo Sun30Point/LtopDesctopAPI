@@ -8,8 +8,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class PersonsController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.Persons> GetList()
         {
@@ -27,7 +31,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.Persons GetItem(Guid PersonGuid)
         {
@@ -46,7 +51,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         }
 
 
-        //POST api/<controller>/5
+        //--------------------------------------------------Create----------------------------------------------------------
+
         [HttpPost]
         public Guid CreateItem(Models.Persons item)
         {
@@ -62,7 +68,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             return item.Guid;
         }
 
-        //PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
+
         [HttpPut]
         public Guid UpdateItem(Models.Persons item)
         {
@@ -79,14 +86,13 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             return item.Guid;
         }
 
+        //--------------------------------------------------Delete---------------------------------------------------------
 
-
-        // DELETE api/<controller>/5
         [HttpDelete]
-        public Guid DeleteItem(Guid PersonGuid)
+        public Guid DeleteItem(Models.Persons item)
         {
-            var result = db.DeletePerson(PersonGuid);
-            return PersonGuid;
+            var result = db.DeletePerson(item.Guid);
+            return item.Guid;
         }
     }
 }

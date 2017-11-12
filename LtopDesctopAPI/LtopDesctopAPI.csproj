@@ -156,8 +156,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\APIControllers\AdvertsController.cs" />
     <Compile Include="Controllers\APIControllers\AdvertTypesController.cs" />
     <Compile Include="Controllers\APIControllers\DeviceCategoryController.cs" />
+    <Compile Include="Controllers\APIControllers\DevicesController.cs" />
     <Compile Include="Controllers\APIControllers\ModelsController.cs" />
     <Compile Include="Controllers\APIControllers\PersonsController.cs" />
     <Compile Include="Controllers\APIControllers\PersonTypesController.cs" />
@@ -190,6 +192,15 @@
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\DeviceCategory.cs">
+      <DependentUpon>LTopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\DevicesToPhoto.cs">
+      <DependentUpon>LTopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\GetPropertySeries_Result.cs">
+      <DependentUpon>LTopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\PropertyToDevice.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -234,8 +245,10 @@
     <Compile Include="EntityModel\Photo.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Adverts.cs" />
     <Compile Include="Models\AdvertTypes.cs" />
     <Compile Include="Models\DeviceCategory.cs" />
+    <Compile Include="Models\Devices.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Models\Persons.cs" />
     <Compile Include="Models\PersonTypes.cs" />

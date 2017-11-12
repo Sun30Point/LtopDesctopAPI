@@ -7,8 +7,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class PersonTypesController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.PersonTypes> GetList()
         {
@@ -25,7 +29,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.PersonTypes GetItem(int id)
         {

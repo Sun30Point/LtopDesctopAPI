@@ -20,6 +20,7 @@ namespace LtopDesctopAPI.EntityModel
             this.PropertyToModels = new HashSet<PropertyToModel>();
             this.PropertyToPropertyTypes = new HashSet<PropertyToPropertyType>();
             this.PropertyToSeries = new HashSet<PropertyToSery>();
+            this.PropertyToDevices = new HashSet<PropertyToDevice>();
         }
     
         public long ID { get; set; }
@@ -32,5 +33,7 @@ namespace LtopDesctopAPI.EntityModel
         public virtual ICollection<PropertyToPropertyType> PropertyToPropertyTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyToSery> PropertyToSeries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PropertyToDevice> PropertyToDevices { get; set; }
     }
 }

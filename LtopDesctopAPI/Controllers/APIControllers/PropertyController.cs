@@ -7,44 +7,81 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class PropertyController : ApiController
     {
-        LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
-        [HttpGet]
-        public List<Models.Properties> GetList(long PropertyType, string Value, long ID, string TypeQuery)
-        {
-            // Получить список Property_GetList SeriecID или DeviceID или ModelID(PrperrtyType, Value, ID)
+        //--------------------------------------------------DB--------------------------------------------------------------
 
+        LTopDBEntities db = new LTopDBEntities();
+
+        //--------------------------------------------------Get/(SeriesId or ModelsId or DevicesId)-------------------------
+        [HttpGet]
+        public List<Models.Properties> GetList(long ID, string TypeQuery)
+        {
             switch (TypeQuery.ToLower())
             {
                 case "series":
-                    return db.Properties.ToList().Select(item => new Models.Properties()
+                    return db.PropertyToSeries.Select(item => new Models.Properties()
                     {
-                        ID =item.ID,
-                        Value = item.Value,
-                        IsActive = item.IsActive
-                    }).ToList();
+                        ID = item.Property.ID,
+                        Value = item.Property.Value,
+                        IsActive = item.Property.IsActive,
+                        PropertyType = item.Property.PropertyToPropertyTypes.Select(item1 => new Models.PropertyTypes()
+                        {
+                            ID = item1.PropertyType.ID,
+                            NameEng = item1.PropertyType.NameEng,
+                            NameRus = item1.PropertyType.NameRus,
+                            NameUkr = item1.PropertyType.NameUkr,
+                            DescriptionEng = item1.PropertyType.DescriptionEng,
+                            DescriptionRus = item1.PropertyType.DescriptionRus,
+                            DescriptionUkr = item1.PropertyType.DescriptionUkr,
+                            IsActive = item1.PropertyType.IsActive
+                        }).FirstOrDefault(),
+                        SeriesId = item.Series.ID
+                    }).Where(item => item.SeriesId == ID).ToList();
 
                 case "models":
-                    return db.Properties.ToList().Select(item => new Models.Properties()
+                    return db.PropertyToModels.Select(item => new Models.Properties()
                     {
-                        ID = item.ID,
-                        Value = item.Value,
-                        IsActive = item.IsActive
-                    }).ToList();
+                        ID = item.Property.ID,
+                        Value = item.Property.Value,
+                        IsActive = item.Property.IsActive,
+                        PropertyType = item.Property.PropertyToPropertyTypes.Select(item1 => new Models.PropertyTypes()
+                        {
+                            ID = item1.PropertyType.ID,
+                            NameEng = item1.PropertyType.NameEng,
+                            NameRus = item1.PropertyType.NameRus,
+                            NameUkr = item1.PropertyType.NameUkr,
+                            DescriptionEng = item1.PropertyType.DescriptionEng,
+                            DescriptionRus = item1.PropertyType.DescriptionRus,
+                            DescriptionUkr = item1.PropertyType.DescriptionUkr,
+                            IsActive = item1.PropertyType.IsActive
+                        }).FirstOrDefault(),
+                        ModelsId = item.Model.ID
+                    }).Where(item => item.ModelsId == ID).ToList();
 
                 case "device":
-                    return db.Properties.ToList().Select(item => new Models.Properties()
+                    return db.PropertyToDevices.Select(item => new Models.Properties()
                     {
-                        ID = item.ID,
-                        Value = item.Value,
-                        IsActive = item.IsActive
-                    }).ToList();
-
+                        ID = item.Property.ID,
+                        Value = item.Property.Value,
+                        IsActive = item.Property.IsActive,
+                        PropertyType = item.Property.PropertyToPropertyTypes.Select(item1 => new Models.PropertyTypes()
+                        {
+                            ID = item1.PropertyType.ID,
+                            NameEng = item1.PropertyType.NameEng,
+                            NameRus = item1.PropertyType.NameRus,
+                            NameUkr = item1.PropertyType.NameUkr,
+                            DescriptionEng = item1.PropertyType.DescriptionEng,
+                            DescriptionRus = item1.PropertyType.DescriptionRus,
+                            DescriptionUkr = item1.PropertyType.DescriptionUkr,
+                            IsActive = item1.PropertyType.IsActive
+                        }).FirstOrDefault(),
+                        DeviceId = item.Device.ID
+                    }).Where(item => item.DeviceId == ID).ToList();
             }
             return null;
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.Properties GetItem(int id)
         {
@@ -52,57 +89,66 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             {
                 ID = item.ID,
                 Value = item.Value,
-                IsActive = item.IsActive
+                IsActive = item.IsActive,
+                PropertyType = item.PropertyToPropertyTypes.Select(item1 => new Models.PropertyTypes()
+                {
+                    ID = item1.PropertyType.ID,
+                    NameEng = item1.PropertyType.NameEng,
+                    NameRus = item1.PropertyType.NameRus,
+                    NameUkr = item1.PropertyType.NameUkr,
+                    DescriptionEng = item1.PropertyType.DescriptionEng,
+                    DescriptionRus = item1.PropertyType.DescriptionRus,
+                    DescriptionUkr = item1.PropertyType.DescriptionUkr,
+                    IsActive = item1.PropertyType.IsActive
+                }).FirstOrDefault()
             }).Where(item => item.ID == id).FirstOrDefault();
         }
 
+        //--------------------------------------------------Create----------------------------------------------------------
 
-
-
-        // POST api/<controller>/5
         [HttpPost]
-        public long? CreateItem(Models.Properties value, long PropertyTypeId, long ID,string TypeQuery)
+        public long? CreateItem(Models.Properties item, long PropertyTypeId, long ID,string TypeQuery)
         {
             switch (TypeQuery.ToLower())
             {
                 case "series":  
-                    return db.CreatePropertySeries(value.Value, PropertyTypeId, ID).FirstOrDefault();
+                    return db.CreatePropertySeries(item.Value, PropertyTypeId, ID).FirstOrDefault();
 
                 case "models":
-                    return db.CreatePropertyModels(value.Value, PropertyTypeId, ID).FirstOrDefault();
+                    return db.CreatePropertyModels(item.Value, PropertyTypeId, ID).FirstOrDefault();
 
                 case "device":
-                    return db.CreatePropertyDevice(value.Value, PropertyTypeId, ID);
+                    return db.CreatePropertyDevice(item.Value, PropertyTypeId, ID);
             }
             return null;
         }
 
-        //PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
+
         [HttpPut]
-        public long? UpdateItem(Models.Properties value, long PropertyTypeId, long ID, string TypeQuery)
+        public long? UpdateItem(Models.Properties item, long PropertyTypeId, long ID, string TypeQuery)
         {
             switch (TypeQuery.ToLower())
             {
                 case "series":
-                    return db.UpdatePropertySeries(value.ID,value.Value, value.IsActive, PropertyTypeId, ID).FirstOrDefault();
+                    return db.UpdatePropertySeries(item.ID,item.Value, item.IsActive, PropertyTypeId, ID).FirstOrDefault();
 
                 case "models":
-                    return db.UpdatePropertyModels(value.ID, value.Value, value.IsActive, PropertyTypeId, ID).FirstOrDefault();
+                    return db.UpdatePropertyModels(item.ID, item.Value, item.IsActive, PropertyTypeId, ID).FirstOrDefault();
 
                 case "device":
-                    return db.UpdatePropertyDevice(value.ID, value.Value, value.IsActive, PropertyTypeId, ID).FirstOrDefault();
+                    return db.UpdatePropertyDevice(item.ID, item.Value, item.IsActive, PropertyTypeId, ID).FirstOrDefault();
             }
             return null;
         }
 
+        //--------------------------------------------------Delete---------------------------------------------------------
 
-
-        // DELETE api/<controller>/5
         [HttpDelete]
-        public long DeleteItem(Models.Properties value)
+        public long DeleteItem(Models.Properties item)
         {
-            var result = db.DeleteProperty(value.ID);
-            return value.ID;
+            var result = db.DeleteProperty(item.ID);
+            return item.ID;
         }
     }
 }

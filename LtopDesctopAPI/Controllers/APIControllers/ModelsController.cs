@@ -7,8 +7,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class ModelsController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.Models> GetList()
         {
@@ -25,7 +29,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.Models GetItem(int id)
         {
@@ -43,30 +48,31 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         }
 
 
-        // POST api/<controller>/5
+        //--------------------------------------------------Create----------------------------------------------------------
+
         [HttpPost]
-        public long CreateItem(Models.Models value)
+        public long CreateItem(Models.Models item)
         {
-            var NewId = db.CreateModel(value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr);
+            var NewId = db.CreateModel(item.NameEng, item.NameRus, item.NameUkr, item.DescriptionEng, item.DescriptionRus, item.DescriptionUkr);
             return (long)NewId.FirstOrDefault();
         }
 
-        // PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
+
         [HttpPut]
-        public long UpdateItem(Models.Models value)
+        public long UpdateItem(Models.Models item)
         {
-            var result = db.UpdateModel(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr,value.IsActive);
-            return value.ID;
+            var result = db.UpdateModel(item.ID, item.NameEng, item.NameRus, item.NameUkr, item.DescriptionEng, item.DescriptionRus, item.DescriptionUkr,item.IsActive);
+            return item.ID;
         }
 
+        //--------------------------------------------------Delete---------------------------------------------------------
 
-
-        // DELETE api/<controller>/5
         [HttpDelete]
-        public long DeleteItem(Models.Models value)
+        public long DeleteItem(Models.Models item)
         {
-            var result = db.DeleteModel(value.ID);
-            return value.ID;
+            var result = db.DeleteModel(item.ID);
+            return item.ID;
         }
     }
 }

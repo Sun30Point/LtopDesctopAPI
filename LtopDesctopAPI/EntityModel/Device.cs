@@ -19,6 +19,8 @@ namespace LtopDesctopAPI.EntityModel
         {
             this.AdvertsToDevices = new HashSet<AdvertsToDevice>();
             this.SeriesToDevices = new HashSet<SeriesToDevice>();
+            this.DevicesToPhotoes = new HashSet<DevicesToPhoto>();
+            this.PropertyToDevices = new HashSet<PropertyToDevice>();
         }
     
         public long ID { get; set; }
@@ -26,6 +28,9 @@ namespace LtopDesctopAPI.EntityModel
         public Nullable<long> ModelsId { get; set; }
         public Nullable<int> DeviceCategoryId { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string DescriptionEng { get; set; }
+        public string DescriptionRus { get; set; }
+        public string DescriptionUkr { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdvertsToDevice> AdvertsToDevices { get; set; }
@@ -34,5 +39,9 @@ namespace LtopDesctopAPI.EntityModel
         public virtual Vendor Vendor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeriesToDevice> SeriesToDevices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DevicesToPhoto> DevicesToPhotoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PropertyToDevice> PropertyToDevices { get; set; }
     }
 }

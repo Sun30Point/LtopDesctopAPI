@@ -7,8 +7,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class AdvertTypesController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.AdvertTypes> GetList()
         {
@@ -25,7 +29,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.AdvertTypes GetItem(int id)
         {
@@ -42,31 +47,31 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).Where(item => item.ID == id).FirstOrDefault();
         }
 
+        //--------------------------------------------------Create----------------------------------------------------------
 
-        // POST api/<controller>/5
         [HttpPost]
-        public long CreateItem(Models.AdvertTypes value)
+        public long CreateItem(Models.AdvertTypes item)
         {
-            var NewId = db.CreateAdvertType(value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr);
+            var NewId = db.CreateAdvertType(item.NameEng, item.NameRus, item.NameUkr, item.DescriptionEng, item.DescriptionRus, item.DescriptionUkr);
             return (long)NewId.FirstOrDefault();
         }
 
-        // PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
+
         [HttpPut]
-        public long UpdateItem(Models.AdvertTypes value)
+        public long UpdateItem(Models.AdvertTypes item)
         {
-            var result = db.UpdateAdvertType(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr, value.IsActive);
-            return value.ID;
+            var result = db.UpdateAdvertType(item.ID, item.NameEng, item.NameRus, item.NameUkr, item.DescriptionEng, item.DescriptionRus, item.DescriptionUkr, item.IsActive);
+            return item.ID;
         }
 
+        //--------------------------------------------------Delete---------------------------------------------------------
 
-
-        // DELETE api/<controller>/5
         [HttpDelete]
-        public long DeleteItem(Models.AdvertTypes value)
+        public long DeleteItem(Models.AdvertTypes item)
         {
-            var result = db.DeleteAdvertType(value.ID);
-            return value.ID;
+            var result = db.DeleteAdvertType(item.ID);
+            return item.ID;
         }
     }
 }

@@ -7,8 +7,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class DeviceCategoryController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.DeviceCategory> GetList()
         {
@@ -20,7 +24,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.DeviceCategory GetItem(long id)
         {

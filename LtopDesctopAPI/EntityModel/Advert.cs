@@ -24,8 +24,10 @@ namespace LtopDesctopAPI.EntityModel
         }
     
         public long ID { get; set; }
-        public string Value { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string DescriptionEng { get; set; }
+        public string DescriptionRus { get; set; }
+        public string DescriptionUkr { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdvertsToAdvertType> AdvertsToAdvertTypes { get; set; }

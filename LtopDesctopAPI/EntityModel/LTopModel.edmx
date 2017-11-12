@@ -10,7 +10,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="AdvertsToAdvertType">
@@ -67,9 +69,21 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescriptionEng" Type="text" />
+          <Property Name="DescriptionRus" Type="text" />
+          <Property Name="DescriptionUkr" Type="text" />
           <Property Name="VendorsId" Type="bigint" />
           <Property Name="ModelsId" Type="bigint" />
           <Property Name="DeviceCategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="DevicesToPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DevicesId" Type="bigint" />
+          <Property Name="PhotoId" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Models">
@@ -162,6 +176,15 @@
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PropertyToDevices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="bigint" />
+          <Property Name="DevicesId" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="PropertyToModels">
@@ -362,6 +385,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_DevicesToPhoto_DevicesId">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="DevicesToPhoto" Type="Self.DevicesToPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DevicesToPhoto">
+              <PropertyRef Name="DevicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DevicesToPhoto_PhotoId">
+          <End Role="Photos" Type="Self.Photos" Multiplicity="0..1" />
+          <End Role="DevicesToPhoto" Type="Self.DevicesToPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DevicesToPhoto">
+              <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_ModelsToDeviceCategory_DevicesCategoryId">
           <End Role="DeviceCategory" Type="Self.DeviceCategory" Multiplicity="0..1" />
           <End Role="ModelsToDeviceCategory" Type="Self.ModelsToDeviceCategory" Multiplicity="*" />
@@ -455,6 +502,30 @@
             </Principal>
             <Dependent Role="PersonsToPhoto">
               <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToDevices_ModelsId">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="PropertyToDevices" Type="Self.PropertyToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToDevices">
+              <PropertyRef Name="DevicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PropertyToDevices_PropertyId">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="PropertyToDevices" Type="Self.PropertyToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyToDevices">
+              <PropertyRef Name="PropertyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -626,6 +697,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CreateAdverts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="CreateAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="NameRus" Type="nvarchar(max)" Mode="In" />
@@ -633,6 +712,19 @@
           <Parameter Name="DescriptionEng" Type="text" Mode="In" />
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+        </Function>
+        <Function Name="CreateDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="DeviceCategoryId" Type="int" Mode="In" />
+          <Parameter Name="VendorsId" Type="bigint" Mode="In" />
+          <Parameter Name="ModelsId" Type="bigint" Mode="In" />
+          <Parameter Name="SeriesId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="CreateDevicePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
+          <Parameter Name="Photo" Type="image" Mode="In" />
         </Function>
         <Function Name="CreateModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NameEng" Type="nvarchar(max)" Mode="In" />
@@ -651,7 +743,7 @@
           <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Salt" Type="nvarchar(max)" Mode="In" />
         </Function>
-        <Function Name="CreatePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="CreatePersonPhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Photo" Type="image" Mode="In" />
         </Function>
@@ -697,8 +789,14 @@
           <Parameter Name="DescriptionRus" Type="text" Mode="In" />
           <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
         </Function>
+        <Function Name="DeleteAdverts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdvertId" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="DeleteAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DeleteDevices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
         </Function>
         <Function Name="DeleteModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModelId" Type="bigint" Mode="In" />
@@ -721,6 +819,16 @@
         <Function Name="DeleteVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="VendorsId" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="UpdateAdverts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AdvertsId" Type="bigint" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="UpdateAdvertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AdvertTypeId" Type="bigint" Mode="In" />
           <Parameter Name="NewNameEng" Type="nvarchar(max)" Mode="In" />
@@ -730,6 +838,23 @@
           <Parameter Name="NewDescriptionRus" Type="text" Mode="In" />
           <Parameter Name="NewDescriptionUkr" Type="text" Mode="In" />
           <Parameter Name="NewIsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdateDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
+          <Parameter Name="DescriptionEng" Type="text" Mode="In" />
+          <Parameter Name="DescriptionRus" Type="text" Mode="In" />
+          <Parameter Name="DescriptionUkr" Type="text" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="DeviceCategoryId" Type="int" Mode="In" />
+          <Parameter Name="VendorsId" Type="bigint" Mode="In" />
+          <Parameter Name="ModelsId" Type="bigint" Mode="In" />
+          <Parameter Name="SeriesId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdateDevicePhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeviceId" Type="bigint" Mode="In" />
+          <Parameter Name="PhotoId" Type="bigint" Mode="In" />
+          <Parameter Name="Photo" Type="image" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="UpdateModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModelId" Type="bigint" Mode="In" />
@@ -816,6 +941,7 @@
           <EntitySet Name="AdvertVersion" EntityType="Self.AdvertVersion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeviceCategory" EntityType="Self.DeviceCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DevicesToPhoto" EntityType="Self.DevicesToPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModelsToDeviceCategory" EntityType="Self.ModelsToDeviceCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
@@ -825,6 +951,7 @@
           <EntitySet Name="PersonType" EntityType="Self.PersonType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyToDevices" EntityType="Self.PropertyToDevices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyToModels" EntityType="Self.PropertyToModels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyToPropertyType" EntityType="Self.PropertyToPropertyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyToSeries" EntityType="Self.PropertyToSeries" Schema="dbo" store:Type="Tables" />
@@ -867,6 +994,14 @@
             <End Role="Vendors" EntitySet="Vendors" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
+          <AssociationSet Name="fk_DevicesToPhoto_DevicesId" Association="Self.fk_DevicesToPhoto_DevicesId">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="DevicesToPhoto" EntitySet="DevicesToPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DevicesToPhoto_PhotoId" Association="Self.fk_DevicesToPhoto_PhotoId">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="DevicesToPhoto" EntitySet="DevicesToPhoto" />
+          </AssociationSet>
           <AssociationSet Name="fk_ModelsToDeviceCategory_DevicesCategoryId" Association="Self.fk_ModelsToDeviceCategory_DevicesCategoryId">
             <End Role="DeviceCategory" EntitySet="DeviceCategory" />
             <End Role="ModelsToDeviceCategory" EntitySet="ModelsToDeviceCategory" />
@@ -898,6 +1033,14 @@
           <AssociationSet Name="fk_PersonsToPhoto_PhotoId" Association="Self.fk_PersonsToPhoto_PhotoId">
             <End Role="Photos" EntitySet="Photos" />
             <End Role="PersonsToPhoto" EntitySet="PersonsToPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToDevices_ModelsId" Association="Self.fk_PropertyToDevices_ModelsId">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="PropertyToDevices" EntitySet="PropertyToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToDevices_PropertyId" Association="Self.fk_PropertyToDevices_PropertyId">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyToDevices" EntitySet="PropertyToDevices" />
           </AssociationSet>
           <AssociationSet Name="fk_PropertyToModels_ModelsId" Association="Self.fk_PropertyToModels_ModelsId">
             <End Role="Models" EntitySet="Models" />
@@ -965,12 +1108,14 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="AdvertsToAdvertTypes" Relationship="Self.fk_AdvertsToAdvertType_AdvertId" FromRole="Adverts" ToRole="AdvertsToAdvertType" />
           <NavigationProperty Name="AdvertsToDevices" Relationship="Self.fk_AdvertsToDevices_AdvertId" FromRole="Adverts" ToRole="AdvertsToDevices" />
           <NavigationProperty Name="AdvertVersions" Relationship="Self.fk_AdvertVersion_AdvertId" FromRole="Adverts" ToRole="AdvertVersion" />
           <NavigationProperty Name="PersonsToAdverts" Relationship="Self.fk_PersonsToAdvert_AdvertId" FromRole="Adverts" ToRole="PersonsToAdvert" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AdvertsToAdvertType">
           <Key>
@@ -1044,6 +1189,11 @@
           <NavigationProperty Name="Model" Relationship="Self.fk_Devices_ModelsId" FromRole="Devices" ToRole="Models" />
           <NavigationProperty Name="Vendor" Relationship="Self.fk_Devices_VendorsId" FromRole="Devices" ToRole="Vendors" />
           <NavigationProperty Name="SeriesToDevices" Relationship="Self.fk_SeriesToDevices_DevicesId" FromRole="Devices" ToRole="SeriesToDevices" />
+          <Property Name="DescriptionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionUkr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DevicesToPhotoes" Relationship="LTopDBModel.fk_DevicesToPhoto_DevicesId" FromRole="Device" ToRole="DevicesToPhoto" />
+          <NavigationProperty Name="PropertyToDevices" Relationship="LTopDBModel.fk_PropertyToDevices_ModelsId" FromRole="Device" ToRole="PropertyToDevice" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
@@ -1146,6 +1296,7 @@
           <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="PersonsToPhotoes" Relationship="Self.fk_PersonsToPhoto_PhotoId" FromRole="Photos" ToRole="PersonsToPhoto" />
+          <NavigationProperty Name="DevicesToPhotoes" Relationship="LTopDBModel.fk_DevicesToPhoto_PhotoId" FromRole="Photo" ToRole="DevicesToPhoto" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
@@ -1157,6 +1308,7 @@
           <NavigationProperty Name="PropertyToModels" Relationship="Self.fk_PropertyToModels_PropertyId" FromRole="Property" ToRole="PropertyToModels" />
           <NavigationProperty Name="PropertyToPropertyTypes" Relationship="Self.fk_PropertyToPropertyType_PropertyId" FromRole="Property" ToRole="PropertyToPropertyType" />
           <NavigationProperty Name="PropertyToSeries" Relationship="Self.fk_PropertyToSeries_PropertyId" FromRole="Property" ToRole="PropertyToSeries" />
+          <NavigationProperty Name="PropertyToDevices" Relationship="LTopDBModel.fk_PropertyToDevices_PropertyId" FromRole="Property" ToRole="PropertyToDevice" />
         </EntityType>
         <EntityType Name="PropertyToModel">
           <Key>
@@ -1818,7 +1970,7 @@
             <Parameter Name="Photo" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="CreateProperty" ReturnType="Collection(Decimal)">
-            <Parameter Name="Value" Mode="In" Type="String" />
+          <Parameter Name="Value" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CreatePropertyType" ReturnType="Collection(Decimal)">
             <Parameter Name="NameEng" Mode="In" Type="String" />
@@ -1970,7 +2122,132 @@
             <Parameter Name="NewPropertyTypeId" Mode="In" Type="Int64" />
             <Parameter Name="NewSeriesId" Mode="In" Type="Int64" />
           </FunctionImport>
+          <FunctionImport Name="DeleteAdverts" ReturnType="Collection(Int32)">
+          <Parameter Name="AdvertId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteDevices" ReturnType="Collection(Int32)">
+          <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetPropertySeries" ReturnType="Collection(LTopDBModel.GetPropertySeries_Result)">
+          <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="DevicesToPhotoes" EntityType="LTopDBModel.DevicesToPhoto" />
+          <EntitySet Name="PropertyToDevices" EntityType="LTopDBModel.PropertyToDevice" />
+          <AssociationSet Name="fk_DevicesToPhoto_DevicesId" Association="LTopDBModel.fk_DevicesToPhoto_DevicesId">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="DevicesToPhoto" EntitySet="DevicesToPhotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToDevices_ModelsId" Association="LTopDBModel.fk_PropertyToDevices_ModelsId">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="PropertyToDevice" EntitySet="PropertyToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DevicesToPhoto_PhotoId" Association="LTopDBModel.fk_DevicesToPhoto_PhotoId">
+            <End Role="Photo" EntitySet="Photos" />
+            <End Role="DevicesToPhoto" EntitySet="DevicesToPhotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PropertyToDevices_PropertyId" Association="LTopDBModel.fk_PropertyToDevices_PropertyId">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="PropertyToDevice" EntitySet="PropertyToDevices" />
+          </AssociationSet>
+          <FunctionImport Name="CreateDevicePhoto" ReturnType="Collection(Int64)">
+            <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePersonPhoto" ReturnType="Collection(Int64)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="CreateDevice" ReturnType="Collection(Int64)">
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="DeviceCategoryId" Mode="In" Type="Int32" />
+            <Parameter Name="VendorsId" Mode="In" Type="Int64" />
+            <Parameter Name="ModelsId" Mode="In" Type="Int64" />
+            <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateDevice" ReturnType="Collection(Int64)">
+            <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="DeviceCategoryId" Mode="In" Type="Int32" />
+            <Parameter Name="VendorsId" Mode="In" Type="Int64" />
+            <Parameter Name="ModelsId" Mode="In" Type="Int64" />
+            <Parameter Name="SeriesId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateDevicePhoto">
+            <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+            <Parameter Name="PhotoId" Mode="In" Type="Int64" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CreateAdverts" ReturnType="Collection(Int64)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAdverts" ReturnType="Collection(Int64)">
+            <Parameter Name="PersonGuid" Mode="In" Type="Guid" />
+            <Parameter Name="AdvertsId" Mode="In" Type="Int64" />
+            <Parameter Name="DescriptionEng" Mode="In" Type="String" />
+            <Parameter Name="DescriptionRus" Mode="In" Type="String" />
+            <Parameter Name="DescriptionUkr" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="AdvertTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="DeviceId" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetPropertySeries_Result">
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Value" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="NameEng" Nullable="true" />
+          <Property Type="String" Name="NameRus" Nullable="true" />
+          <Property Type="String" Name="NameUkr" Nullable="true" />
+          <Property Type="String" Name="DescriptionEng" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="DescriptionRus" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="DescriptionUkr" Nullable="true" MaxLength="Max" />
+          <Property Type="Int64" Name="ID1" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="DevicesToPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Device" Relationship="LTopDBModel.fk_DevicesToPhoto_DevicesId" FromRole="DevicesToPhoto" ToRole="Device" />
+          <NavigationProperty Name="Photo" Relationship="LTopDBModel.fk_DevicesToPhoto_PhotoId" FromRole="DevicesToPhoto" ToRole="Photo" />
+        </EntityType>
+        <EntityType Name="PropertyToDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Device" Relationship="LTopDBModel.fk_PropertyToDevices_ModelsId" FromRole="PropertyToDevice" ToRole="Device" />
+          <NavigationProperty Name="Property" Relationship="LTopDBModel.fk_PropertyToDevices_PropertyId" FromRole="PropertyToDevice" ToRole="Property" />
+        </EntityType>
+        <Association Name="fk_DevicesToPhoto_DevicesId">
+          <End Type="LTopDBModel.Device" Role="Device" Multiplicity="0..1" />
+          <End Type="LTopDBModel.DevicesToPhoto" Role="DevicesToPhoto" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_PropertyToDevices_ModelsId">
+          <End Type="LTopDBModel.Device" Role="Device" Multiplicity="0..1" />
+          <End Type="LTopDBModel.PropertyToDevice" Role="PropertyToDevice" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_DevicesToPhoto_PhotoId">
+          <End Type="LTopDBModel.Photo" Role="Photo" Multiplicity="0..1" />
+          <End Type="LTopDBModel.DevicesToPhoto" Role="DevicesToPhoto" Multiplicity="*" />
+        </Association>
+        <Association Name="fk_PropertyToDevices_PropertyId">
+          <End Type="LTopDBModel.Property" Role="Property" Multiplicity="0..1" />
+          <End Type="LTopDBModel.PropertyToDevice" Role="PropertyToDevice" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1980,8 +2257,10 @@
           <EntitySetMapping Name="Adverts">
             <EntityTypeMapping TypeName="LTopDBModel.Advert">
               <MappingFragment StoreEntitySet="Adverts">
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2043,6 +2322,9 @@
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="LTopDBModel.Device">
               <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="DescriptionUkr" ColumnName="DescriptionUkr" />
+                <ScalarProperty Name="DescriptionRus" ColumnName="DescriptionRus" />
+                <ScalarProperty Name="DescriptionEng" ColumnName="DescriptionEng" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VendorsId" ColumnName="VendorsId" />
                 <ScalarProperty Name="ModelsId" ColumnName="ModelsId" />
@@ -2267,7 +2549,6 @@
           <FunctionImportMapping FunctionImportName="CreateAdvertType" FunctionName="LTopDBModel.Store.CreateAdvertType" />
           <FunctionImportMapping FunctionImportName="CreateModel" FunctionName="LTopDBModel.Store.CreateModel" />
           <FunctionImportMapping FunctionImportName="CreatePerson" FunctionName="LTopDBModel.Store.CreatePerson" />
-          <FunctionImportMapping FunctionImportName="CreatePhoto" FunctionName="LTopDBModel.Store.CreatePhoto" />
           <FunctionImportMapping FunctionImportName="CreateProperty" FunctionName="LTopDBModel.Store.CreateProperty" />
           <FunctionImportMapping FunctionImportName="CreatePropertyType" FunctionName="LTopDBModel.Store.CreatePropertyType" />
           <FunctionImportMapping FunctionImportName="CreateSeries" FunctionName="LTopDBModel.Store.CreateSeries" />
@@ -2293,6 +2574,67 @@
           <FunctionImportMapping FunctionImportName="UpdatePropertyDevice" FunctionName="LTopDBModel.Store.UpdatePropertyDevice" />
           <FunctionImportMapping FunctionImportName="UpdatePropertyModels" FunctionName="LTopDBModel.Store.UpdatePropertyModels" />
           <FunctionImportMapping FunctionImportName="UpdatePropertySeries" FunctionName="LTopDBModel.Store.UpdatePropertySeries" />
+          <FunctionImportMapping FunctionImportName="DeleteAdverts" FunctionName="LTopDBModel.Store.DeleteAdverts" />
+          <FunctionImportMapping FunctionImportName="DeleteDevices" FunctionName="LTopDBModel.Store.DeleteDevices" />
+          <EntitySetMapping Name="DevicesToPhotoes">
+            <EntityTypeMapping TypeName="LTopDBModel.DevicesToPhoto">
+              <MappingFragment StoreEntitySet="DevicesToPhoto">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyToDevices">
+            <EntityTypeMapping TypeName="LTopDBModel.PropertyToDevice">
+              <MappingFragment StoreEntitySet="PropertyToDevices">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="fk_DevicesToPhoto_DevicesId" TypeName="LTopDBModel.fk_DevicesToPhoto_DevicesId" StoreEntitySet="DevicesToPhoto">
+            <EndProperty Name="DevicesToPhoto">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Device">
+              <ScalarProperty Name="ID" ColumnName="DevicesId" />
+            </EndProperty>
+            <Condition ColumnName="DevicesId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_PropertyToDevices_ModelsId" TypeName="LTopDBModel.fk_PropertyToDevices_ModelsId" StoreEntitySet="PropertyToDevices">
+            <EndProperty Name="PropertyToDevice">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Device">
+              <ScalarProperty Name="ID" ColumnName="DevicesId" />
+            </EndProperty>
+            <Condition ColumnName="DevicesId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_DevicesToPhoto_PhotoId" TypeName="LTopDBModel.fk_DevicesToPhoto_PhotoId" StoreEntitySet="DevicesToPhoto">
+            <EndProperty Name="DevicesToPhoto">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Photo">
+              <ScalarProperty Name="ID" ColumnName="PhotoId" />
+            </EndProperty>
+            <Condition ColumnName="PhotoId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_PropertyToDevices_PropertyId" TypeName="LTopDBModel.fk_PropertyToDevices_PropertyId" StoreEntitySet="PropertyToDevices">
+            <EndProperty Name="PropertyToDevice">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Property">
+              <ScalarProperty Name="ID" ColumnName="PropertyId" />
+            </EndProperty>
+            <Condition ColumnName="PropertyId" IsNull="false" />
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="CreateDevicePhoto" FunctionName="LTopDBModel.Store.CreateDevicePhoto" />
+          <FunctionImportMapping FunctionImportName="CreatePersonPhoto" FunctionName="LTopDBModel.Store.CreatePersonPhoto" />
+          <FunctionImportMapping FunctionImportName="CreateDevice" FunctionName="LTopDBModel.Store.CreateDevice" />
+          <FunctionImportMapping FunctionImportName="UpdateDevice" FunctionName="LTopDBModel.Store.UpdateDevice" />
+          <FunctionImportMapping FunctionImportName="UpdateDevicePhoto" FunctionName="LTopDBModel.Store.UpdateDevicePhoto" />
+          <FunctionImportMapping FunctionImportName="CreateAdverts" FunctionName="LTopDBModel.Store.CreateAdverts" />
+          <FunctionImportMapping FunctionImportName="UpdateAdverts" FunctionName="LTopDBModel.Store.UpdateAdverts" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2308,7 +2650,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

@@ -8,8 +8,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class VendorsController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.Vendors> GetList()
         {
@@ -26,7 +30,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
           }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.Vendors GetItem(int id)
         {
@@ -43,29 +48,31 @@ namespace LtopDesctopAPI.Controllers.APIControllers
            }).Where(item => item.ID == id).FirstOrDefault();
         }
 
+        //--------------------------------------------------Create----------------------------------------------------------
 
-        // POST api/<controller>/5
         [HttpPost]
-        public long CreateItem(Models.Vendors value)
+        public long CreateItem(Models.Vendors item)
         {
-            var NewId = db.CreateVendors(value.NameEng,value.NameRus,value.NameUkr,value.DescriptionEng,value.DescriptionRus,value.DescriptionUkr);
+            var NewId = db.CreateVendors(item.NameEng,item.NameRus,item.NameUkr,item.DescriptionEng,item.DescriptionRus,item.DescriptionUkr);
             return (long)NewId.FirstOrDefault();
         }
 
-        // PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
+
         [HttpPut]
-        public long UpdateItem(Models.Vendors value)
+        public long UpdateItem(Models.Vendors item)
         {
-            var result = db.UpdateVendors(value.ID, value.NameEng, value.NameRus, value.NameUkr, value.DescriptionEng, value.DescriptionRus, value.DescriptionUkr,value.IsActive);
-            return value.ID;
+            var result = db.UpdateVendors(item.ID, item.NameEng, item.NameRus, item.NameUkr, item.DescriptionEng, item.DescriptionRus, item.DescriptionUkr,item.IsActive);
+            return item.ID;
         }
 
-        // DELETE api/<controller>/5
+        //--------------------------------------------------Delete---------------------------------------------------------
+
         [HttpDelete]
-        public long DeleteItem(Models.Vendors value)
+        public long DeleteItem(Models.Vendors item)
         {
-            var result = db.DeleteVendors(value.ID);
-            return value.ID;
+            var result = db.DeleteVendors(item.ID);
+            return item.ID;
         }
     }
 }

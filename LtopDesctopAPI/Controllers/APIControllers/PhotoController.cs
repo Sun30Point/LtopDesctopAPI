@@ -8,8 +8,12 @@ namespace LtopDesctopAPI.Controllers.APIControllers
 {
     public class PhotoController : ApiController
     {
+        //--------------------------------------------------DB--------------------------------------------------------------
+
         LTopDBEntities db = new LTopDBEntities();
-        // GET api/<controller>
+
+        //--------------------------------------------------Get-------------------------------------------------------------
+
         [HttpGet]
         public List<Models.Photos> GetList()
         {
@@ -21,7 +25,8 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).ToList();
         }
 
-        // GET api/<controller>/5
+        //--------------------------------------------------Get/id-----------------------------------------------------------
+
         [HttpGet]
         public Models.Photos GetItem(long id)
         {
@@ -33,31 +38,41 @@ namespace LtopDesctopAPI.Controllers.APIControllers
             }).Where(item => item.ID == id).FirstOrDefault();
         }
 
+        //--------------------------------------------------Create----------------------------------------------------------
 
-        // POST api/<controller>/5
         [HttpPost]
-        public long CreateItem(Guid PersonGuid, Models.Photos value)
+        public long? CreateItem(string PersonGuid, long DeviceId, Models.Photos item)
         {
-            var NewId = db.CreatePhoto(PersonGuid,value.Photo);
-            return (long)NewId.FirstOrDefault();
+            if (PersonGuid != string.Empty && PersonGuid != null)
+            {
+                return (long)db.CreatePersonPhoto(Guid.Parse(PersonGuid), item.Photo).FirstOrDefault();
+            }
+            else
+                if (DeviceId > 0)
+            {
+                return (long)db.CreateDevicePhoto(DeviceId, item.Photo).FirstOrDefault();
+            }
+            return null;
         }
 
-        // PUT api/<controller>/5
+        //--------------------------------------------------Update---------------------------------------------------------
+
         [HttpPut]
-        public long UpdateItem(Models.Photos value)
+        public long UpdateItem(Models.Photos item)
         {
-            var result = db.UpdatePhoto(value.ID,value.Photo,value.IsActive);
-            return value.ID;
+            var result = db.UpdatePhoto(item.ID, item.Photo, item.IsActive);
+            return item.ID;
         }
 
 
 
-        // DELETE api/<controller>/5
+        //--------------------------------------------------Delete---------------------------------------------------------
+
         [HttpDelete]
-        public long DeleteItem(Models.Photos value)
+        public long DeleteItem(Models.Photos item)
         {
-            var result = db.DeletePhoto(value.ID);
-            return value.ID;
+            var result = db.DeletePhoto(item.ID);
+            return item.ID;
         }
     }
 }
