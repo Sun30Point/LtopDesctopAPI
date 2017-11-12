@@ -1,0 +1,181 @@
+﻿.container {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.nav_myoffice > .actives > a  {
+    color: red !important;
+}
+
+.nav_myoffice > li:nth-child(1) {
+    margin-left: 3em;
+}
+
+.nav_myoffice > li:nth-child(2) {
+    margin-left: 5%;
+}
+
+.nav_myoffice > li:nth-child(3) {
+    margin-left: 5%;
+}
+
+.nav_myoffice > li:nth-child(4) {
+    margin-left: 5%;
+}
+
+.nav_myoffice > li:nth-child(5) {
+    margin-left: 5%;
+}
+
+
+
+
+.w34ds {
+    margin-top: 10% !important;
+}
+
+/*-- New message  --*/
+.col-md-10 {
+    width: unset;
+}
+
+.setting_li ul li {
+    list-style-type: none !important;
+    margin-bottom: 1em !important;
+    color: #999 !important;
+    font-size: 16px !important;
+}
+
+.user {
+    width: 120%;
+    height: 75%;
+}
+.user_message {
+    margin-left: -5%;
+}
+
+.content {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    margin-top: 3%;
+    float: left;
+    width: 100%;
+    height: 300px;
+}
+.fotoproduct {
+    float: left;
+    height:300px;
+    width:27%;
+}
+
+
+
+.fotouser {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    float: right;
+    width: 65%;
+    height: 300px;
+}
+
+.fotoproductpx {
+    height:300px;
+    width:250px;
+}
+
+.fotouserpx {
+    height: 130px;
+    width: 85%;
+}
+.caption {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    margin-left: 3%;
+    margin-top: 15%;
+    font-size: 25px;
+}
+.media-body {
+    padding-left: 5%;
+}
+.media-heading {
+    margin-left: 3%;
+    color: #003bb3;
+    font-weight: 700;
+}
+.time {
+    color: #bfbfbf;
+}
+
+/*-- My Announcements  --*/
+
+.single {
+    margin-top:3%;
+}
+
+
+.price {
+    margin-left: 5%;
+    font-size: 20px;
+    float: right;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+/*-- Settings  --*/
+
+
+.usere {
+    float: left;
+    height: 300px;
+    width: 27%;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+.foto {
+display:none !important;
+
+}
+.foto_user_setting {
+width:180px;
+height:190px;
+}
+.files {
+
+margin-left: 8% !important;
+}
+.user_description {
+    float: right;
+    width: 55%;
+    height: 300px;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.img_check {
+    width: 40px;
+    height: 40px;
+}
+
+.address li i {
+    
+}
+.glyp {
+    padding: 2%;
+    border: 2px solid black;
+    margin-right: 15px;
+}
+
+.address_all {
+    float: left;
+}
+
+/*-- PaymentForServices  --*/
+.payment {
+    margin-top: 2%;
+    margin-left:20%;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor:pointer;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td {
+    color:black;
+}

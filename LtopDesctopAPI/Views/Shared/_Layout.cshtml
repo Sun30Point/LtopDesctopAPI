@@ -1,40 +1,135 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Electronic Store a Ecommerce Online Shopping Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Electronic Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free web designs for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+           function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <!-- Custom Theme files -->
+   
+
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- font-awesome icons -->
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <!-- //font-awesome icons -->
+    <!-- js -->
+
+   
+    <script src="~/Scripts/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/jquery.countdown.css" /> <!-- countdown -->
+    <!-- //js -->
+    <!-- web fonts -->
+    <link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- //web fonts -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+    </script>
+    <!-- //end-smooth-scrolling -->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- for bootstrap working -->
+
+    <script type="text/javascript" src="~/Scripts/js/bootstrap-3.1.1.min.js"></script>
+    <!-- //for bootstrap working -->
+
+    <!-- banner -->
+    <div class="container" id="header">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="wrapper" id="wrapper_header_phones">
+                <div id-="header_img">
+                    <span id="header_logo"><a href="~/Home/Index">   <img src="~/Content/images/logolTOP.png" /></a> </span>
+                    <span id="header_telephone"> <a href="~/Home/productTP">    <img src="~/Content/images/smarlTOP.png" /> </a></span>
+                    <span id="header_laptope"> <a href="~/Home/productsLP">     <img src="~/Content/images/tablTOP.png" /></a> </span>
+                    <span id="header_tablet">  <a href="~/Home/productNP">    <img class="noutlTOP" src="~/Content/images/noutlTOP.png" /></a> </span>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                </ul>
+        </div>
+        <!-- navigation -->
+        <div class="navigation">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav">
+                            <li> @Html.ActionLink("Размещение обьявления", "Index", "Declaration")</li>
+                            <li class="search_menu">
+                                <div class="col-md-4">
+                                    <div id="Sea" class="input-group" >
+                                        <input  type="text" class="form-control" placeholder="Поиск" />
+                                        <div class="input-group-btn">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>@Html.ActionLink("Мой кабинет", "Index", "MyOffice")</li>
+                            <li><a href="#">Вход </a></li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+        <!-- //navigation -->
+        <!-- //banner -->
+        <br>
+
+
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="container">
+                    <div class="w3_footer_grids">
+                        <div class="col-md-3 w3_footer_grid">
+
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <div class="footer-copy">
+                        <div class="footer-copy1">
+                            <div class="footer-copy-pos">
+                                <a href="#home1" class="scroll"><img src="~/Content/images/arrow.png" alt=" " class="img-responsive" /></a>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <p>&copy; Произведено компанией Sun30Point. Email: sun30point@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
-    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

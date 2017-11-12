@@ -52,10 +52,49 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -156,6 +195,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIControllers\AdvertsController.cs" />
     <Compile Include="Controllers\APIControllers\AdvertTypesController.cs" />
     <Compile Include="Controllers\APIControllers\DeviceCategoryController.cs" />
@@ -168,6 +208,10 @@
     <Compile Include="Controllers\APIControllers\PropertyTypesController.cs" />
     <Compile Include="Controllers\APIControllers\SeriesController.cs" />
     <Compile Include="Controllers\APIControllers\VendorsController.cs" />
+    <Compile Include="Controllers\DeclarationController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyOfficeController.cs" />
     <Compile Include="EntityModel\Advert.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
@@ -187,7 +231,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EntityModel\Device.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
@@ -245,10 +288,13 @@
     <Compile Include="EntityModel\Photo.cs">
       <DependentUpon>LTopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Adverts.cs" />
     <Compile Include="Models\AdvertTypes.cs" />
     <Compile Include="Models\DeviceCategory.cs" />
     <Compile Include="Models\Devices.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Models\Persons.cs" />
     <Compile Include="Models\PersonTypes.cs" />
@@ -295,6 +341,127 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\fasthover.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\jquery.countdown.css" />
+    <Content Include="Content\css\popuo-box.css" />
+    <Content Include="Content\css\slider.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\styleDeclaration.css" />
+    <Content Include="Content\css\styleMyOffice.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\10.jpg" />
+    <Content Include="Content\images\11.jpg" />
+    <Content Include="Content\images\12.jpg" />
+    <Content Include="Content\images\13.jpg" />
+    <Content Include="Content\images\14.jpg" />
+    <Content Include="Content\images\15.jpg" />
+    <Content Include="Content\images\16.jpg" />
+    <Content Include="Content\images\17.jpg" />
+    <Content Include="Content\images\18.jpg" />
+    <Content Include="Content\images\19.jpg" />
+    <Content Include="Content\images\2.jpg" />
+    <Content Include="Content\images\20.jpg" />
+    <Content Include="Content\images\21.jpg" />
+    <Content Include="Content\images\22.jpg" />
+    <Content Include="Content\images\23.jpg" />
+    <Content Include="Content\images\24.jpg" />
+    <Content Include="Content\images\25.jpg" />
+    <Content Include="Content\images\26.jpg" />
+    <Content Include="Content\images\27.jpg" />
+    <Content Include="Content\images\28.jpg" />
+    <Content Include="Content\images\29.jpg" />
+    <Content Include="Content\images\3.jpg" />
+    <Content Include="Content\images\30.jpg" />
+    <Content Include="Content\images\31.jpg" />
+    <Content Include="Content\images\32.jpg" />
+    <Content Include="Content\images\33.jpg" />
+    <Content Include="Content\images\34.jpg" />
+    <Content Include="Content\images\35.jpg" />
+    <Content Include="Content\images\36.jpg" />
+    <Content Include="Content\images\37.jpg" />
+    <Content Include="Content\images\38.jpg" />
+    <Content Include="Content\images\39.jpg" />
+    <Content Include="Content\images\4.jpg" />
+    <Content Include="Content\images\40.jpg" />
+    <Content Include="Content\images\41.jpg" />
+    <Content Include="Content\images\44.jpg" />
+    <Content Include="Content\images\45.jpg" />
+    <Content Include="Content\images\46.jpg" />
+    <Content Include="Content\images\47.jpg" />
+    <Content Include="Content\images\48.jpg" />
+    <Content Include="Content\images\49.jpg" />
+    <Content Include="Content\images\5.jpg" />
+    <Content Include="Content\images\50.jpg" />
+    <Content Include="Content\images\51.jpg" />
+    <Content Include="Content\images\52.jpg" />
+    <Content Include="Content\images\6.jpg" />
+    <Content Include="Content\images\7.jpg" />
+    <Content Include="Content\images\8.jpg" />
+    <Content Include="Content\images\9.jpg" />
+    <Content Include="Content\images\a.jpg" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\b.jpg" />
+    <Content Include="Content\images\b1.jpg" />
+    <Content Include="Content\images\backlTOP.png" />
+    <Content Include="Content\images\bg1.jpg" />
+    <Content Include="Content\images\bg2.jpg" />
+    <Content Include="Content\images\bg3.jpg" />
+    <Content Include="Content\images\c.jpg" />
+    <Content Include="Content\images\check.png" />
+    <Content Include="Content\images\close.png" />
+    <Content Include="Content\images\hdd.png" />
+    <Content Include="Content\images\img-sp.png" />
+    <Content Include="Content\images\img-sp2.png" />
+    <Content Include="Content\images\left-arrow.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logolTOP.png" />
+    <Content Include="Content\images\mourinho.jpg" />
+    <Content Include="Content\images\noutlTOP.png" />
+    <Content Include="Content\images\one_new.png" />
+    <Content Include="Content\images\Op.jpg" />
+    <Content Include="Content\images\p1.jpg" />
+    <Content Include="Content\images\p10.jpg" />
+    <Content Include="Content\images\p11.jpg" />
+    <Content Include="Content\images\p12.jpg" />
+    <Content Include="Content\images\p13.jpg" />
+    <Content Include="Content\images\p2.jpg" />
+    <Content Include="Content\images\p3.jpg" />
+    <Content Include="Content\images\p4.jpg" />
+    <Content Include="Content\images\p5.jpg" />
+    <Content Include="Content\images\p6.jpg" />
+    <Content Include="Content\images\P7.jpg" />
+    <Content Include="Content\images\p8.jpg" />
+    <Content Include="Content\images\p9.jpg" />
+    <Content Include="Content\images\Proc.jpg" />
+    <Content Include="Content\images\right-arrow.png" />
+    <Content Include="Content\images\smarlTOP.png" />
+    <Content Include="Content\images\star-.png" />
+    <Content Include="Content\images\star.png" />
+    <Content Include="Content\images\star_new.png" />
+    <Content Include="Content\images\t1.png" />
+    <Content Include="Content\images\t2.png" />
+    <Content Include="Content\images\t3.png" />
+    <Content Include="Content\images\t4.png" />
+    <Content Include="Content\images\t5.png" />
+    <Content Include="Content\images\t6.png" />
+    <Content Include="Content\images\t7.png" />
+    <Content Include="Content\images\tablTOP.png" />
+    <Content Include="Content\images\tb1.jpg" />
+    <Content Include="Content\images\tb2.jpg" />
+    <Content Include="Content\images\tb3.jpg" />
+    <Content Include="Content\images\tb4.jpg" />
+    <Content Include="Content\images\tb5.jpg" />
+    <Content Include="Content\images\telephone\Lenovo\1.jpg" />
+    <Content Include="Content\images\telephone\Lenovo\2.jpg" />
+    <Content Include="Content\images\telephone\Lenovo\3.jpg" />
+    <Content Include="Content\images\telephone\Lenovo\4.jpg" />
+    <Content Include="Content\images\three_new.png" />
+    <Content Include="Content\images\two_new.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -321,6 +488,18 @@
     <Content Include="EntityModel\LTopModel.edmx.diagram">
       <DependentUpon>LTopModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\images\Thumbs.db" />
+    <Content Include="Content\images\telephone\Lenovo\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\ltop - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -329,6 +508,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap-3.1.1.min.js" />
+    <Content Include="Scripts\js\easyResponsiveTabs.js" />
+    <Content Include="Scripts\js\imagezoom.js" />
+    <Content Include="Scripts\js\jquery.countdown.js" />
+    <Content Include="Scripts\js\jquery.flexisel.js" />
+    <Content Include="Scripts\js\jquery.flexslider.js" />
+    <Content Include="Scripts\js\jquery.magnific-popup.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\js\jquery.wmuSlider.js" />
+    <Content Include="Scripts\js\minicart.js" />
+    <Content Include="Scripts\js\MyOffice.js" />
+    <Content Include="Scripts\js\script.js" />
+    <Content Include="Scripts\js\slider.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -343,12 +535,39 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Declaration\AdPlacement.cshtml" />
+    <Content Include="Views\Declaration\Announcement.cshtml" />
+    <Content Include="Views\Declaration\Index.cshtml" />
+    <Content Include="Views\Declaration\OperatingSystem.cshtml" />
+    <Content Include="Views\Declaration\Publication.cshtml" />
+    <Content Include="Views\Declaration\TechnicalSpecifications.cshtml" />
+    <Content Include="Views\Home\AdPlacement.cshtml" />
+    <Content Include="Views\Home\Announcement.cshtml" />
+    <Content Include="Views\Home\OperatingSystem.cshtml" />
+    <Content Include="Views\Home\Publication.cshtml" />
+    <Content Include="Views\Home\TechnicalSpecifications.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\MyOffice.cshtml" />
+    <Content Include="Views\Shared\_DeclarationProduct.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\looptope\" />
+    <Folder Include="Content\images\notebook\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

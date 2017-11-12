@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "OperatingSystem";
+    Layout = "~/Views/Shared/_DeclarationProduct.cshtml";
+}
+<div class="container">
+    <div class="col-md-6">
+        <div class="contentform leftWind">
+            <div class="form-group">
+                <label for="cpu">Наличие операционной системы<span>*</span></label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-windows"
+                           aria-hidden="true"></i>
+                    </span>
+                    <label class="radio-inline"><input type="checkbox" name="optradio">Да</label>
+                    <label class="radio-inline"><input type="checkbox" name="optradio">Нет</label>
+                    <div class="validation"></div>
+                
+                
+                </div>
+                
+
+            </div>
+
+           
+        </div>
+        <div class="rightWind">
+
+            <div class="form-group">
+                <label for="system">Система<span>*</span></label>
+                <div class="input-group">
+                    <span class="input-group-addon">  <i class="fa fa-linux" aria-hidden="true"></i></span>
+                    <select class="form-control" id="system" name="system">
+                        <option value="1">Windows</option>
+                        <option value="2">Linux</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="info">Дополнительная информация</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-info-circle "
+                       aria-hidden="true"></i>
+                </span>
+                <textarea name="info" id="info" rows="10" cols="33" data-rule="required" data-msg="Info"></textarea>
+                <div class="validation"></div>
+            </div>
+        </div>
+        </div>
+
+</div>

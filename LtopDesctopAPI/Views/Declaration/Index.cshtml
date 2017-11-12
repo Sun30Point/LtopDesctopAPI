@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DeclarationProduct.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-8 ">
+        <form>
+            <div class="contentform">
+                    <div class="form-group">
+                        <label for="surname">ФИО<span>*</span></label>
+                        <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"
+                               aria-hidden="true"></i>
+                        </span> 
+                            <input type="text" class="form-control" id="surname" placeholder=" ФИО пользователя" data-msg="Surname" name="surname" required>
+                            <div class="validation"></div>
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                    <label for="tel">Телефон<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-phone-square "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="tel" class="form-control" id="tel" placeholder=" Ваш email" data-msg="Telephone" name="tel" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-envelope "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="email" class="form-control" id="email" placeholder=" Ваш номер телефону" data-msg="Email" name="email" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="region">Регион<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-globe "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" id="email" placeholder=" Ваш регион" data-msg="Region" name="region" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="info">Дополнительная информация</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-info-circle "
+                               aria-hidden="true"></i>
+                        </span>
+                        <textarea name="info" id="info"  data-rule="required" rows="1" cols="90"  data-msg="Info"></textarea>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+
+
+                    
+            </div>
+
+        </form>	
+    </div>
+</div>

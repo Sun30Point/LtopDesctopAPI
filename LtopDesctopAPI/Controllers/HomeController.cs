@@ -26,5 +26,29 @@ namespace LtopDesctopAPI.Controllers
 
             return View();
         }
+
+
+        public ActionResult productTP()
+        {
+            ViewBag.Message = "product";
+
+            return View();
+        }
+
+        public ActionResult productsLP()
+        {
+            ViewBag.Message = "product1";
+
+            return View();
+        }
+
+        public ActionResult productsIP()
+        {
+            ViewBag.Message = "productTelephone";
+
+            return View();
+        }
+
+
     }
 }

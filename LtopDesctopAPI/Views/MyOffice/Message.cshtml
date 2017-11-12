@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared/MyOffice.cshtml";
+}
+
+
+<!-- New message   -->
+<div class="container">
+
+    <div class="col-md-8 ">
+
+        <div class="content">
+            <div class="fotoproduct">
+                <img class="img-rounded fotoproductpx " alt="" src="~/Content/images/a.jpg" />
+            </div>
+            <div class="fotouser">
+                <div class="user">
+          
+
+                    <div class="col-md-10 wthree_team_grid  user_message">
+
+
+
+                        <img src="~/Content/images/t4.png" alt=" " class=" fotouserpx img-responsive img-circle" />
+                        <h4>Smith Allen </h4>
+                        <div class="agileits_social_button">
+                            <ul>
+                                <li><a href="#" class="facebook"> </a></li>
+                                <li><a href="#" class="twitter"> </a></li>
+                                <li><a href="#" class="google"> </a></li>
+                                <li><a href="#" class="pinterest"> </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                
+                <span class="caption"> Ноутбук Dell 3350</span> 
+                    <br><br>
+                    <div class="media-body">
+                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10 am</small>
+                        <h5 class="media-heading">Naimish Sakhpara</h5>
+                        <small>
+                            Location H-2, Ayojan Nagar, Near Gate-3, Near
+                            Shreyas Crossing Dharnidhar Derasar,
+                            Paldi, Ahmedabad 380007, Ahmedabad,
+                            India
+                            Phone 091 37 669307
+                            Email aapamdavad.district@gmail.com
+                        </small>
+                        <br>
+                        <br>
+                        <div class="media-body">
+                            <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:20 am</small>
+                            <h5 class="media-heading">Naimish Sakhpara</h5>
+                            <small>
+                                Location H-2, Ayojan Nagar, Near Gate-3, Near
+                                Shreyas Crossing Dharnidhar Derasar,
+                                Paldi, Ahmedabad 380007, Ahmedabad,
+                                India
+                                Phone 091 37 669307
+                                Email aapamdavad.district@gmail.com
+                            </small>
+                        </div>
+                    </div>
+                </div>
+               
+               
+
+            </div>
+            
+
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/js/minicart.js"></script>
+<script>
+        w3ls.render();
+        w3ls.cart.on('w3sb_checkout', function (evt) {
+        	var items, len, i;
+
+        	if (this.subtotal() > 0) {
+        		items = this.items();
+
+        		for (i = 0, len = items.length; i < len; i++) {
+        		}
+        	}
+        });
+</script>
+<!-- //cart-js -->
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

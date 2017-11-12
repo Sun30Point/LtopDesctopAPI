@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Announcement";
+    Layout = "~/Views/Shared/_DeclarationProduct.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-8 ">
+        <form>
+            <div class="contentform">
+                <div class="form-group">
+                    <label for="condition">Состояние<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-check" aria-hidden="true"></i></span>
+                        <select class="form-control" id="condition" name="condition">
+                            <option value="1">Б/у </option>
+                            <option value="2">Новый</option>
+                            <option value="3">Неробочий</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="heading">Рубрика<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-book" aria-hidden="true"></i></span>
+                        <select class="form-control" id="heading" name="heading">
+                            <option value="1">Телефон </option>
+                            <option value="2">Ноутбук</option>
+                            <option value="3">Планшет</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Фирма-производитель<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-home" aria-hidden="true"></i></span>
+                        <select class="form-control" id="company" name="company">
+                            <option value="1">Asus </option>
+                            <option value="2">HP</option>
+                            <option value="3">Sumsung</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="model">Модель<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                        <select class="form-control" id="model" name="model">
+                            <option value="1">Model1</option>
+                            <option value="2">Model2</option>
+                            <option value="3">Model3</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="seria">Серия</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-laptop" aria-hidden="true"></i></span>
+                        <select class="form-control" id="seria" name="seria">
+                            <option value="1">Asus </option>
+                            <option value="2">HP</option>
+                            <option value="3">Sumsung</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Загрузить фото<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                        <input type="file" id="image" name="image" multiple>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label for="price">Цена<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">  <i class="fa fa-money" aria-hidden="true"></i></span>
+                        <input type="number" class="form-control" id="price" placeholder=" Укажите цену" data-msg="Price" name="price" required>
+                      
+                    </div>
+                </div>
+
+
+                </div>
+
+        </form>
+    </div>
+</div>
+

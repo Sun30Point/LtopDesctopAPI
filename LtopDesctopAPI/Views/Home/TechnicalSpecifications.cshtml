@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "TechnicalSpecifications";
+    Layout = "~/Views/Shared/_DeclarationProduct.cshtml";
+}
+<div class="container">
+    <div class="col-md-8 ">
+        <form>
+            <div class="contentform">
+                <div class="form-group">
+                    <label for="cpu">CPU<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-exclamation"
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" id="cpu" placeholder="Мощность процессора" data-msg="CPU" name="cpu" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="op">Оперативная память<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-cc "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" id="op" placeholder="Оперативная память" data-msg="OP" name="op" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="hdd">HDD<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-hdd-o "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" id="hdd" placeholder="HDD" data-msg="HDD" name="hdd" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label for="videocard">Видеокарта<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-barcode"
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" id="videocard" placeholder=" Видеокарта" data-msg="Video" name="videocard" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="diagonal">Диагональ<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-desktop "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="number" class="form-control" id="diagonal" placeholder="Диагональ" data-msg="diagonal" name="diagonal" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="chipset">Чипсет<span>*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-code-fork "
+                               aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" id="chipset" placeholder="Чипсет" data-msg="chipset" name="chipset" required>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ports">Порты<span>*</span></label>
+                    <div class="input-group">
+                        <label class="radio-inline"><input type="radio" name="optradio">Option 1</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+                        <br>
+                        <label class="radio-inline"><input type="radio" name="optradio">Option 4</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Option 5</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Option 6</label>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ports">Дополнительные характеристики</label>
+                    <div class="input-group">
+                        <label class="radio-inline"><input type="radio" name="optradio">Wi-fi</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Сard-reader</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Микрофон</label>
+                        <div class="validation"></div>
+                        <br>
+                        <label class="radio-inline"><input type="radio" name="optradio">Bluetooth</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">3G</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Дополнительная клавиатура</label>
+                        <div class="validation"></div>
+                        <br>
+                        <label class="radio-inline"><input type="radio" name="optradio">DVD-R</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Подсветка клавиатуры</label>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="info">Дополнительная информация</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-info-circle "
+                               aria-hidden="true"></i>
+                        </span>
+                        <textarea name="info" id="info" rows="3" cols="33" data-rule="required" data-msg="Info"></textarea>
+                        <div class="validation"></div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
