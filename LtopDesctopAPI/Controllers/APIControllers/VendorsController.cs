@@ -1,4 +1,5 @@
-﻿using LtopDesctopAPI.EntityModel;
+﻿using LtopDesctopAPI.Comon;
+using LtopDesctopAPI.EntityModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,7 +14,7 @@ namespace LtopDesctopAPI.Controllers.APIControllers
         LTopDBEntities db = new LTopDBEntities();
 
         //--------------------------------------------------Get-------------------------------------------------------------
-
+        [MembershipHttpAuthorizeAttribute(Roles="Reader")]
         [HttpGet]
         public List<Models.Vendors> GetList()
         {

@@ -15,7 +15,7 @@ namespace LtopDesctopAPI.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        /*
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -481,6 +481,6 @@ namespace LtopDesctopAPI.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion*/
+        #endregion
     }
 }

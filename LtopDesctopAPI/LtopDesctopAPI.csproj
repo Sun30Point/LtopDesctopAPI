@@ -195,6 +195,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="Comon\BasicHttpAuthorizeAttribute.cs" />
+    <Compile Include="Comon\Error.cs" />
+    <Compile Include="Comon\MembershipHttpAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIControllers\AdvertsController.cs" />
     <Compile Include="Controllers\APIControllers\AdvertTypesController.cs" />

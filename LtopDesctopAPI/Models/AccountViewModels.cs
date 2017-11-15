@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace LtoopDesctop.Models
+namespace LtopDesctopAPI.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
